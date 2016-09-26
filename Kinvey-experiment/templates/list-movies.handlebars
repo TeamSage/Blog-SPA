@@ -1,0 +1,13 @@
+<h1> List of all Movies </h1>
+	<div>
+		<ul>
+		{{#this }}
+			<ul>
+				<a href = "#listMovies/{{this._id}}">{{@index}} {{this.name}} </a>
+				{{#this.actors}}
+					<li>{{this}}</li>
+				{{/this.actors}}
+			</ul>
+		{{/this}}
+		</ul>
+	</div>
