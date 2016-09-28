@@ -19,17 +19,10 @@ li {
     list-style: none;
 }
 
-.hidden-when-not-logged-in {
+.hidden{
     display: none;
 }
 
-.hidden-when-not-logged-in {
-    display: initial;
-}
-
-.visible-when-not-logged-in {
-    display: none;
-}
 
 .active {
     background: #cdcdb1;

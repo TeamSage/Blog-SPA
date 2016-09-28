@@ -13,7 +13,7 @@
                 item.addClass('active');
                 
 
-            })
+            });
 });
     }
 

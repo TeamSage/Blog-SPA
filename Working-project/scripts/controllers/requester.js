@@ -25,8 +25,8 @@ let requester = {
                 contentType: 'application/json',
                 data: JSON.stringify(body),
                 headers,
-                success(response) {
-                    resolve(response);
+                success(data) {
+                    resolve(data);
                 },
                 error(err) {
                     reject(JSON.parse(err.responseText));
@@ -39,13 +39,13 @@ let requester = {
     	let headers = options.headers || {};
     	let promise = new Promise((resolve, reject) => {
     		$.ajax({
-    			utl,
-    			method: 'PUT',
+    			url,
+    			method: 'POST',
     			contentType: 'application/json',
     			data: JSON.stringify(body),
     			headers,
-                success(response) {
-                    resolve(response);
+                success(data) {
+                    resolve(data);
                 },
                 error(err) {
                     reject(JSON.parse(err.responseText));
@@ -54,11 +54,11 @@ let requester = {
     	});
     	return promise;
     },
-    getJSON(url, body, options = {}) {
+    getJSON(url, options = {}) {
     	let headers = options.headers || {};
     	let promise = new Promise((resolve, reject) => {
     		$.ajax({
-    			utl,
+    			url,
     			method: 'GET',
     			headers,
                 success(response) {
