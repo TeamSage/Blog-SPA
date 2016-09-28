@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul>
+            {{#each result}}
+            <li>
+                <p>Category: <a href="#/home?category={{category}}">{{category}}</a></p>
+                <h2 class="section-heading">{{title}}</h2>
+                <p>{{text}}</p>
+                <a href="#">
+                    <img class="img-responsive" src="img/post-sample-image.jpg" alt="">
+                </a>
+                <div>
+                    <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
+                    <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
+                </div>
+                <span>Likes: <strong>{{likes}}</strong></span>
+                <span>Dislikes: <strong>{{dislikes}}</strong></span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

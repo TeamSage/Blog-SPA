@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-preview">
+            <ul>
+                {{#each result}}
+                <li>
+                    <p>Category: <a href="#/home?category={{category}}">{{category}}</a></p>
+                    <a href="#">
+                        <!--TODO:url to the current post -->
+                        <h2 class="post-title">{{title}}</h2>
+                        <h3>{{description}}</h3>
+                    </a>
+                    <div>
+                        <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
+                        <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
+                    </div>
+                    <span>Likes: <strong>{{likes}}</strong></span>
+                    <span>Dislikes: <strong>{{dislikes}}</strong></span>
+                    <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                </li>
+                {{each}}
+            </ul>
+        </div>
+        <hr>
+    </div>
+</div>
