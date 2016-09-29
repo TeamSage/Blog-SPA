@@ -69,6 +69,8 @@ let requester = {
                 }
     		});
     	});
+
+        return promise;
     }
 
 };

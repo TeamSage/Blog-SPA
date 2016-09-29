@@ -8,16 +8,18 @@ let controller = (function() {
 		dataService.isLoggedIn().
         then((isLoggedIn) => {
             if (isLoggedIn) {
-              
+                showPosts();
             }
         });
+
+        
         //TODO- load posts 
-        templatesLoader.get('home').
-            then((templateHTML) => {
-                let template = Handlebars.compile(templateHTML);
-                let html = template();
-                $('#container').html(html);
-            });
+        // templatesLoader.get('home').
+        //     then((templateHTML) => {
+        //         let template = Handlebars.compile(templateHTML);
+        //         let html = template();
+        //         $('#container').html(html);
+        //     });
 	}
 
     function register() {
@@ -104,22 +106,47 @@ let controller = (function() {
                 return;
             }
 
-            Promise.all([dataService.getUserInfo, templatesLoader.get('user-panel')]).
+            Promise.all([dataService.getUserInfo(), templatesLoader.get('userpanel')]).
             then(([userInfo, templateHTML]) => {
                 let template = Handlebars.compile(templateHTML);
-                let html = template(userInfo);
+                let html = template();
 
-                //append to 
-                //Add event listener to buttons.
+                 $('#container').html(html);
+
+                 $('#btn-post-add').on('click', (ev) => {
+                    let content = $('#content-post').val();
+                    let title = $('#title-post').val();
+                    let categoryes = $('#category-post').val().split(',').
+                        filter(el => el.length !== 0) .
+                        map((el) => el.trim());
+
+                    let user = localStorage.getItem('user');
+                    let likes = 0;
+                    let dislikes = 0;
+                    let post = {
+                        title,
+                        content,
+                        categoryes,
+                        user,
+                        likes,
+                        dislikes
+                    };
+                    dataService.addPost(post);
+
+                 });
             });
         });
     }
 
     function showPosts() {
-        Promise.all([dataService.getPosts, templatesLoader.get('posts')]).
+        debugger;
+        Promise.all([dataService.getPosts(), templatesLoader.get('home')]).
         then(([postsInfo, templateHTML]) => {
+
             let template = Handlebars.compile(templateHTML);
             let html = template(postsInfo);
+             $('#container').html(html);
+
             //append to 
             //Add event listener to buttons.
 
@@ -128,16 +155,39 @@ let controller = (function() {
 
     }
 
+    function showUserPosts(params) {
+        debugger;
+        Promise.all([dataService.getPosts(), templatesLoader.get('user')]).
+            then(([posts, templateHTML]) => {
+                posts = posts.filter((post) => {
+                    return post.user === params.user;
+                });
+
+                let user = params.user;
+                let obj = {
+                    user,
+                    posts
+                };
+                let template = Handlebars.compile(templateHTML);
+                let html = template(obj);
+                $('#container').html(html);
+            });
+    }
+
     function toggleClassWhenLoggedIn() {
     	$('#register-link').addClass('hidden');
         $('#login-link').addClass('hidden');
         $('#logout-link').removeClass('hidden');
+        $('#userpanel-link').removeClass('hidden');
+
     }
 
     function toggleClassWhenLoggedOut() {
     	$('#register-link').removeClass('hidden');
         $('#login-link').removeClass('hidden');
         $('#logout-link').addClass('hidden');
+        $('#userpanel-link').addClass('hidden');
+
     }
 
     return {
@@ -146,7 +196,8 @@ let controller = (function() {
         logout,
         showUserPanel,
         showPosts,
-        home
+        home,
+        showUserPosts
     };
 
 }());
