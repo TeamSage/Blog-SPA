@@ -1,11 +1,28 @@
-/*jshint esversion: 6 */
-import { requester as request } from './controllers/requester.js';
+import Handlebars from 'handlebars';
 
-let templatesLoader = {
-    get: function(name) {
-        let url = `/templates/${name}.html`;
-        return request.get(url);
+function loadTemplate(templateName) {
+    let templateUrl = `./templates/${templateName}.html`;
+
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: templateUrl,
+            success: function (data) {
+                let template = Handlebars.compile(data);
+                resolve(template);
+            },
+            error: function (err) {
+                reject(err);
+            }
+        })
+    });
+}
+
+class TemplatesLoader {
+    load(templateName) {
+        return loadTemplate(templateName);
     }
-};
+}
 
-export { templatesLoader };
+var templatesLoader = new TemplatesLoader();
+
+export {templatesLoader};
