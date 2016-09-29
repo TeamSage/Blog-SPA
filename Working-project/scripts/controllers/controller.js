@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
-import { dataService } from './data.js';
-import { templatesLoader } from '../template-loader.js';
+import { dataService } from 'data';
+import { templatesLoader } from 'templates-loader';
 
 let controller = (function() {
 
@@ -30,12 +30,10 @@ let controller = (function() {
                 return;
             }
 
-            templatesLoader.get('register').
+            templatesLoader.load('register').
             then((templateHTML) => {
-                let template = Handlebars.compile(templateHTML);
-                let html = template();
-                $('#container').html(html);
-
+                $('#container').html(templateHTML);
+            }).then(() => {
                 $('#btn-reg').on('click', (ev) => {
                     let userName = $('#firstName').val();
                     let password = $('#password').val();
@@ -43,7 +41,6 @@ let controller = (function() {
                         userName,
                         password
                     };
-
                     dataService.register(user).
                     then(() => {
                     	toggleClassWhenLoggedIn();
@@ -51,7 +48,7 @@ let controller = (function() {
                     });
                     ev.preventDefault();
                     return false;
-                });
+            })
             });
         });
     }
@@ -64,28 +61,27 @@ let controller = (function() {
                 return;
             }
 
-            templatesLoader.get('login').
+            templatesLoader.load('login').
             then((templateHTML) => {
-                let template = Handlebars.compile(templateHTML);
-                let html = template();
-                 $('#container').html(html);
-
+                 $('#container').html(templateHTML);
+            })
+            .then(() => {
                 $('#btn-log').on('click', (ev) => {
-                    let username = $('#userName-log').val();
-                    let password = $('#password-log').val();
-                    let user = {
-                        username,
-                        password
-                    };
+                let username = $('#userName-log').val();
+                let password = $('#password-log').val();
+                let user = {
+                    username,
+                    password
+                };
 
-                    dataService.login(user).
-                    then(() => {
-                        toggleClassWhenLoggedIn();
-                        window.location = '#/home';
-                    });
-                    ev.preventDefault();
-                    return false;
+                dataService.login(user).
+                then(() => {
+                    toggleClassWhenLoggedIn();
+                    window.location = '#/home';
                 });
+                ev.preventDefault();
+                return false;
+                 });
             });
         });
     }
@@ -106,12 +102,10 @@ let controller = (function() {
                 return;
             }
 
-            Promise.all([dataService.getUserInfo(), templatesLoader.get('userpanel')]).
+            Promise.all([dataService.getUserInfo(), templatesLoader.load('userpanel')]).
             then(([userInfo, templateHTML]) => {
-                let template = Handlebars.compile(templateHTML);
-                let html = template();
 
-                 $('#container').html(html);
+                 $('#container').html(templateHTML);
 
                  $('#btn-post-add').on('click', (ev) => {
                     let content = $('#content-post').val();
@@ -139,7 +133,7 @@ let controller = (function() {
     }
 
     function showPosts() {
-        debugger;
+        //debugger;
         Promise.all([dataService.getPosts(), templatesLoader.get('home')]).
         then(([postsInfo, templateHTML]) => {
 
@@ -156,8 +150,8 @@ let controller = (function() {
     }
 
     function showUserPosts(params) {
-        debugger;
-        Promise.all([dataService.getPosts(), templatesLoader.get('user')]).
+        //debugger;
+        Promise.all([dataService.getPosts(), templatesLoader.load('user')]).
             then(([posts, templateHTML]) => {
                 posts = posts.filter((post) => {
                     return post.user === params.user;
@@ -168,9 +162,7 @@ let controller = (function() {
                     user,
                     posts
                 };
-                let template = Handlebars.compile(templateHTML);
-                let html = template(obj);
-                $('#container').html(html);
+                $('#container').html(templateHTML);
             });
     }
 
