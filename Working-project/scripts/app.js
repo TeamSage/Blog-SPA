@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
-import { controller } from './controllers/controller.js';
+import Navigo from 'navigo';
+import { controller } from 'controller';
 
 let router = new Navigo(null, true);
 
