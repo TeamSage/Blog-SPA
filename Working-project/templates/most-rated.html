@@ -1,15 +1,15 @@
-  <div class="first-section">
-                <div class="container">
-                    <div class="custom_box">
-                        <h2>Most liked Posts</h2>
-                        <div class="clear"></div>
-                    </div>
-                    {{#this}}
-                    <div class="little_box">
-                        <p class="box-paragraph">{{title}}</p>
-                        <input type="submit" value="Read More">
-                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on date</p>
-                    </div>
-                    {{/this}}
-                </div>
-            </div>
+<div class="first-section">
+    <div class="container">
+        <div class="custom_box">
+            <h3><span>Most liked Posts</span></h3>
+            <div class="clear"></div>
+        </div>
+        {{#this}}
+        <div class="little_box">
+            <p class="box-paragraph">{{title}}</p>
+            <input type="submit" value="Read More">
+            <p class="post-meta">Posted by <a href="#">{{user}}</a> on date{{date}}</p>
+        </div>
+        {{/this}}
+    </div>
+</div>

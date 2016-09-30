@@ -4,30 +4,12 @@
             <h3><span>Recent Added Posts</span></h3>
             <div class="clear"></div>
         </div>
+        {{#this}}
         <div class="little_box">
             <p class="box-paragraph">{{title}}</p>
             <input class="input-read-more" type="submit" value="Read More">
             <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
-            <!-- TODO: Must Redirect to the current Post-->
         </div>
-        <div class="little_box">
-            <p class="box-paragraph">{{title}}</p>
-            <input class="input-read-more" type="submit" value="Read More">
-            <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
-            <!-- TODO: Must Redirect to the current Post-->
-        </div>
-        <div class="little_box">
-            <p class="box-paragraph">{{title}}</p>
-            <input class="input-read-more" type="submit" value="Read More">
-            <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
-            <!-- TODO: Must Redirect to the current Post-->
-        </div>
-        <div class="little_box">
-            <p class="box-paragraph">{{title}}</p>
-            <input class="input-read-more" type="submit" value="Read More">
-            <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
-            <!-- TODO: Must Redirect to the current Post-->
-        </div>
+        {{/this}}
     </div>
-</div>
 </div>

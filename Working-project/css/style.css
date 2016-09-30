@@ -2,6 +2,17 @@ body {
     background-color: #d9d9d9;
 }
 
+a.navbar-brand {
+    color: #fff;
+    padding: 20px;
+}
+
+a.navbar-brand {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 .container-fluid {
     background-color: #000;
 }
@@ -48,7 +59,8 @@ div#bs-example-navbar-collapse-1.collapse.navbar-collapse {
 .navbar-default .navbar-brand {
     color: #fff;
 }
-.navbar-default .navbar-nav > li > a {
+
+.navbar-default .navbar-nav>li>a {
     color: #fff;
 }
 
@@ -96,6 +108,7 @@ div.first-section {
     min-height: 370px;
     border-bottom: 2px solid #2e3636;
     border-top: 2px solid #2e3636;
+
 }
 
 .custom_box {

@@ -50,7 +50,7 @@
     </script>
 
 
-   <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,7 +59,9 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#home"><span>SAGE'S BLOG</span></a>
+                <a id="btn-signup" class="navbar-brand glyphicon glyphicon-plus-sign " href="#/register"> Register</a>
+                <a id="btn-login" class="navbar-brand glyphicon glyphicon-log-in " href="#/login"> Log In</a>
+                <a id="btn-logout" class="navbar-brand glyphicon glyphicon-log-out " href="#logout"> Log Out</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -77,18 +79,12 @@
                     <li>
                         <a id="btn-user" href="#user-panel">User Panel</a>
                     </li>
-                    <li>
-                        <a id="btn-logout" class="glyphicon glyphicon-log-out " href = "#logout"> Log Out</a>
-                    </li>
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
-
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
@@ -106,47 +102,74 @@
         </div>
     </header>
     <div class="middle-section container">
-          <div id="wrapper" class="row">
+        <div id="wrapper" class="row">
             <!-- Here comes templates-->
-            <!-- Show LogIn and SignUp Buttons-->
-           
+
             <!-- END Templates-->
         </div>
-        <div id = "most-liked" class="row">
+
+        <div id="most-rated" class="row">
             <!--  Posts Template-->
-          
-            <!-- END of Posts Template-->
-        </div>
-      
-        <div class="row">
-            <!--  Posts Template  -->
             <div class="first-section">
                 <div class="container">
                     <div class="custom_box">
-                        <h2>Recent Added Posts</h2>
+                        <h3><span>Most liked Posts</span></h3>
                         <div class="clear"></div>
                     </div>
                     <div class="little_box">
                         <p class="box-paragraph">{{title}}</p>
-                        <input type="submit" value="Read More">
+                        <input class="input-read-more" type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input class="input-read-more" type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input class="input-read-more" type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input class="input-read-more" type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END of Posts Template-->
+        </div>
+
+        <div id="recent-added" class="row">
+            <!--  Posts Template  -->
+            <div class="first-section">
+                <div class="container">
+                    <div class="custom_box">
+                        <h3><span>Recent Added Posts</span></h3>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input class="input-read-more" type="submit" value="Read More">
                         <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
                         <!-- TODO: Must Redirect to the current Post-->
                     </div>
                     <div class="little_box">
                         <p class="box-paragraph">{{title}}</p>
-                        <input type="submit" value="Read More">
+                        <input class="input-read-more" type="submit" value="Read More">
                         <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
                         <!-- TODO: Must Redirect to the current Post-->
                     </div>
                     <div class="little_box">
                         <p class="box-paragraph">{{title}}</p>
-                        <input type="submit" value="Read More">
+                        <input class="input-read-more" type="submit" value="Read More">
                         <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
                         <!-- TODO: Must Redirect to the current Post-->
                     </div>
                     <div class="little_box">
                         <p class="box-paragraph">{{title}}</p>
-                        <input type="submit" value="Read More">
+                        <input class="input-read-more" type="submit" value="Read More">
                         <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
                         <!-- TODO: Must Redirect to the current Post-->
                     </div>
@@ -156,7 +179,6 @@
         <!-- END of Posts Template-->
     </div>
 
-    <hr>
 
     <!-- Footer -->
     <footer>
