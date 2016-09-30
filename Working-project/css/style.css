@@ -32,6 +32,30 @@ div#bs-example-navbar-collapse-1.collapse.navbar-collapse {
     background-color: #000;
 }
 
+.navbar-default .navbar-toggle {
+    border-color: #0085A1;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: #0085A1;
+}
+
+.navbar-custom .navbar-header .navbar-toggle {
+    color: #fff;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+#wrapper {
+    padding: 30px 0px;
+}
+
 *[role="form"] {
     max-width: 530px;
     padding: 15px;
@@ -69,42 +93,50 @@ li {
 
 div.first-section {
     background-color: #e6e6e6;
-    min-height: 600px;
-    padding-top: 50px;
+    min-height: 370px;
     border-bottom: 2px solid #2e3636;
     border-top: 2px solid #2e3636;
 }
 
 .custom_box {
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #2e3636;
-    min-height: 100px;
-    color: #fff;
+    min-height: 30px;
 }
 
-.custom_box h2 {
-    margin: 0px 150px;
+.custom_box h3 {
     color: #fff;
+    font-size: 20px;
+    position: relative;
+}
+
+.custom_box h3 span {
+    color: #fff;
+    font-size: 20px;
+    left: -102px;
+    margin-left: 50%;
+    position: absolute;
+    width: 204px;
 }
 
 .little_box {
     background-color: #f3f3f3;
     border-radius: 5px;
     float: left;
-    height: 300px;
+    height: 260px;
     margin-right: 18px;
-    margin-top: 50px;
+    margin-top: 22px;
     width: 266px;
 }
 
 .little_box input {
-    width: 200px;
-    height: 50px;
     background-color: #2e3636;
-    color: #fff;
-    text-transform: uppercase;
     border-radius: 5px;
-    margin: 34px;
+    color: #fff;
+    height: 32px;
+    margin: 0px 60px;
+    text-transform: uppercase;
+    width: 154px;
 }
 
 .little_box h3 {
@@ -133,9 +165,18 @@ p.box-paragraph {
 
 .post-meta {
     font-size: 12px;
-    margin-top: -104px;
+    margin-top: -60px;
 }
 
 .box-paragraph {
     height: 182px;
+}
+
+.input-read-more {
+    font-size: 14px;
+}
+
+#btn-login,
+#btn-signup {
+    text-decoration: none;
 }
