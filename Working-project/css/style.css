@@ -108,7 +108,6 @@ div.first-section {
     min-height: 370px;
     border-bottom: 2px solid #2e3636;
     border-top: 2px solid #2e3636;
-
 }
 
 .custom_box {
@@ -192,4 +191,12 @@ p.box-paragraph {
 #btn-login,
 #btn-signup {
     text-decoration: none;
+}
+
+
+/*FIRST SECTION*/
+
+.form-horizontal {
+    background-color: #e6e6e6;
+    border-radius: 10px;
 }
