@@ -6,4 +6,4 @@ const kinveyConst = {
     APP_SECRET
 }
 
-export {kinveyConst}
+export { kinveyConst }

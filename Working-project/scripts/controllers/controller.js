@@ -118,7 +118,7 @@ let controller = (function() {
                         map((el) => el.trim());
 
                     let user = localStorage.getItem('user');
-                    let likes = 0;
+                    let likes = 1;
                     let dislikes = 0;
                     let post = {
                         title,
@@ -137,18 +137,31 @@ let controller = (function() {
 
     function showPosts() {
         //debugger;
-        Promise.all([dataService.getPosts(), templatesLoader.load('post')]).
-        then(([postsInfo, templateHTML]) => {
+        Promise.all([dataService.getPosts(), templatesLoader.load('post'), templatesLoader.load('most-rated')]).
+        then(([postsInfo, templateHTML, rated]) => {
+           let mostRated = postsInfo.sort((p1, p2) => {
+                return (p2.likes - p1.likes);
+           }).slice(0, 4);
+           localStorage.setItem('mostRated', mostRated);
 
-           
+           let lastAdded = postsInfo.slice(0, 4);
+           localStorage.setItem('lastAdded', lastAdded);
+
+
             let html = templateHTML(postsInfo);
              $('#wrapper').html(html);
 
+             let ratedHTML = rated(mostRated);
+             $('#most-liked').html(ratedHTML);
             //append to 
             //Add event listener to buttons.
 
         });
 
+
+    }
+
+    function loadPopularPosts() {
 
     }
 
@@ -159,6 +172,7 @@ let controller = (function() {
                 posts = posts.filter((post) => {
                     return post.user === params.user;
                 });
+
 
                 let user = params.user;
                 let obj = {
