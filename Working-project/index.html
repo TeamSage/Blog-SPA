@@ -50,7 +50,7 @@
     </script>
 
 
-    <!-- Navigation -->
+   <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,32 +59,26 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html"><span>SAGE'S BLOG</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#/home">Home</a>
+                        <a href="#home">Home</a>
                     </li>
                     <li>
-                        <a href="#/about">About</a>
+                        <a href="#about">About</a>
                     </li>
                     <li>
-                        <a href="#/post">Posts</a>
+                        <a href="#posts">Posts</a>
                     </li>
                     <li>
-                        <a href="#/register" id = "register-link">Sign Up</a>
+                        <a id="btn-user" href="#user-panel">User Panel</a>
                     </li>
                     <li>
-                        <a href="#/login" id = "login-link">Log In</a>
-                    </li>
-                      <li>
-                        <a href="#/user-panel" id = "userpanel-link" class = "hidden">User-panel</a>
-                    </li>
-                     <li>
-                        <a href="#/logout" id = "logout-link" class = "hidden">Logout</a>
+                        <a id="btn-logout" class="glyphicon glyphicon-log-out " href = "#logout"> Log Out</a>
                     </li>
 
                 </ul>
@@ -98,22 +92,95 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: url('img/sage-black.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>Naturе</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">Blog  for natural things</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+    <div class="middle-section container">
 
-    <div id="container">
-        <!-- Here comes templates-->
+        <div class="row">
+            <!--  Posts Template-->
+            <div class="first-section">
+                <div class="container">
+                    <div class="custom_box">
+                        <h2>Most liked Posts</h2>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END of Posts Template-->
+        </div>
+        <div id="wrapper" class="row">
+            <!-- Here comes templates-->
+            <!-- Show LogIn and SignUp Buttons-->
+           
+            <!-- END Templates-->
+        </div>
+        <div class="row">
+            <!--  Posts Template  -->
+            <div class="first-section">
+                <div class="container">
+                    <div class="custom_box">
+                        <h2>Recent Added Posts</h2>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                        <!-- TODO: Must Redirect to the current Post-->
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                        <!-- TODO: Must Redirect to the current Post-->
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                        <!-- TODO: Must Redirect to the current Post-->
+                    </div>
+                    <div class="little_box">
+                        <p class="box-paragraph">{{title}}</p>
+                        <input type="submit" value="Read More">
+                        <p class="post-meta">Posted by <a href="#">{{user}}</a> on {{date}}</p>
+                        <!-- TODO: Must Redirect to the current Post-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END of Posts Template-->
     </div>
 
     <hr>
@@ -149,7 +216,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                    <p class="copyright text-muted">Sage Team &copy; Blog 2016</p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,35 @@
 body {
-    background-color: #eee;
+    background-color: #d9d9d9;
+}
+
+.container-fluid {
+    background-color: #000;
+}
+
+.navbar-custom.is-fixed .navbar-brand {
+    color: #fff;
+}
+
+.navbar-custom.is-fixed .nav li a {
+    color: #fff;
+}
+
+#bs-example-navbar-collapse-1 li a:hover {
+    background-color: #0085A1;
+}
+
+.navbar-custom.is-fixed .nav li a:hover,
+.navbar-custom.is-fixed .nav li a:focus {
+    color: #fff;
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
+    color: #0085A1;
+}
+
+div#bs-example-navbar-collapse-1.collapse.navbar-collapse {
+    background-color: #000;
 }
 
 *[role="form"] {
@@ -19,13 +49,93 @@ li {
     list-style: none;
 }
 
-.hidden{
+.visible {
+    display: block;
+}
+
+.hidden {
     display: none;
 }
 
-
 .active {
-    background: #cdcdb1;
+    background: #0085A1;
     opacity: .5;
     border-radius: 5px;
+    color: #fff;
+}
+
+
+/*FIRST SECTION*/
+
+div.first-section {
+    background-color: #e6e6e6;
+    min-height: 600px;
+    padding-top: 50px;
+    border-bottom: 2px solid #2e3636;
+    border-top: 2px solid #2e3636;
+}
+
+.custom_box {
+    border-radius: 10px;
+    background-color: #2e3636;
+    min-height: 100px;
+    color: #fff;
+}
+
+.custom_box h2 {
+    margin: 0px 150px;
+    color: #fff;
+}
+
+.little_box {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    float: left;
+    height: 300px;
+    margin-right: 18px;
+    margin-top: 50px;
+    width: 266px;
+}
+
+.little_box input {
+    width: 200px;
+    height: 50px;
+    background-color: #2e3636;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin: 34px;
+}
+
+.little_box h3 {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.little_box h3,
+p.box-paragraph {
+    color: #808080;
+    text-align: center;
+}
+
+.little_box img {
+    margin: 50px 100px;
+}
+
+.little_box.building_img img {
+    margin: 44px 100px;
+}
+
+.little_box input:hover {
+    cursor: pointer;
+    background-color: #0085A1;
+}
+
+.post-meta {
+    font-size: 12px;
+    margin-top: -104px;
+}
+
+.box-paragraph {
+    height: 182px;
 }

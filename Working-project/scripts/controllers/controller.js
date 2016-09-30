@@ -9,6 +9,9 @@ let controller = (function() {
         then((isLoggedIn) => {
             if (isLoggedIn) {
                 showPosts();
+            } else {
+                 templatesLoader.load('index-notLoggedIn')
+                    .then((templ) => $('#wrapper').html(templ));
             }
         });
 
@@ -32,7 +35,7 @@ let controller = (function() {
 
             templatesLoader.load('register').
             then((templateHTML) => {
-                $('#container').html(templateHTML);
+                $('#wrapper').html(templateHTML);
             }).then(() => {
                 $('#btn-reg').on('click', (ev) => {
                     let userName = $('#firstName').val();
@@ -48,7 +51,7 @@ let controller = (function() {
                     });
                     ev.preventDefault();
                     return false;
-            })
+            });
             });
         });
     }
@@ -63,7 +66,7 @@ let controller = (function() {
 
             templatesLoader.load('login').
             then((templateHTML) => {
-                 $('#container').html(templateHTML);
+                 $('#wrapper').html(templateHTML);
             })
             .then(() => {
                 $('#btn-log').on('click', (ev) => {
@@ -105,7 +108,7 @@ let controller = (function() {
             Promise.all([dataService.getUserInfo(), templatesLoader.load('userpanel')]).
             then(([userInfo, templateHTML]) => {
 
-                 $('#container').html(templateHTML);
+                 $('#wrapper').html(templateHTML);
 
                  $('#btn-post-add').on('click', (ev) => {
                     let content = $('#content-post').val();
@@ -134,12 +137,12 @@ let controller = (function() {
 
     function showPosts() {
         //debugger;
-        Promise.all([dataService.getPosts(), templatesLoader.get('home')]).
+        Promise.all([dataService.getPosts(), templatesLoader.load('post')]).
         then(([postsInfo, templateHTML]) => {
 
-            let template = Handlebars.compile(templateHTML);
-            let html = template(postsInfo);
-             $('#container').html(html);
+           
+            let html = templateHTML(postsInfo);
+             $('#wrapper').html(html);
 
             //append to 
             //Add event listener to buttons.
@@ -162,7 +165,7 @@ let controller = (function() {
                     user,
                     posts
                 };
-                $('#container').html(templateHTML);
+                $('#wrapper').html(templateHTML(obj));
             });
     }
 
