@@ -199,7 +199,6 @@ p.box-paragraph {
 
 .delete-container {
     width: 100%;
-
     position: relative;
 }
 
@@ -239,4 +238,32 @@ h3.post-head {
 .post ul {
     background-color: #fff;
     color: #0085A1;
+}
+
+.post,
+.comment {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.comment {
+    background: #aaa;
+    margin-left: 50px;
+}
+
+.author {
+    font-size: 12px;
+}
+
+.anonymous {
+    color: darkblue;
+}
+
+.author::after {
+    content: "wrote:";
+}
+
+.content {
+    font-size: 16px;
 }

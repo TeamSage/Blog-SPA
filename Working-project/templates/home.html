@@ -1,31 +1,15 @@
-<!-- Show All Posts-->
-<!-- with their Categories -->
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul>
-            {{#this}}
-            <li>
-                <a href="#/home?title={{data.title}}">
-                    <h3 class="post-title">{{data.title}}</h3>
-                </a>
-                {{#if result}}
-                <a href="#">
-                    <img class="img-responsive" src="img/post-sample-image.jpg" alt="">
-                </a>
-                {{else}}
-                <span></span> {{/if}}
-                <div>
-                    <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
-                    <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
-                </div>
-                <span>Likes: <strong>{{data.likes}}</strong></span>
-                <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
-                <p class="post-meta">Posted by <a href="#/posts/{{user}}">{{data.user}}</a> on date{{data.date}}</p>
-                <p>Categoryes: {{#data.categoryes}}
-                    <a href="#/home?category={{data.this}}">{{this}}</a> {{/data.categoryes}}
-                </p>
-            </li>
-            {{/this}}
-        </ul>
+<!-- Buttons-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-info btn-add-post">Add  Post</button>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-info btn-view-post">All Posts</button>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-info btn-my-post">My Posts</button>
+        </div>
     </div>
+</div>
 </div>
