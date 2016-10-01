@@ -6,23 +6,21 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <h3 class="post-head">{{data.user}}`s Posts</h3>
+            {{#data.posts}}
             <div class="row">
                 <div class="col-md-8">
 
                     <div class="post">
-                        <h3 class="post-head">{{data.user}}`s Posts</h3>
                         <ul>
-                            {{#data.posts}}
                             <li>
                                 <h3>{{data.title}}</h3>
                                 <p>{{data.content}}</p>
                                 {{#data.categoryes}}
                                 <span>{{this}}</span> {{/data.categoryes}}
                             </li>
-                            {{/data.posts}}
                         </ul>
                     </div>
-
                 </div>
                 <div class="col-md-2">
                     <div class="delete-container">
@@ -31,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            {{/data.posts}}
 
         </div>
 

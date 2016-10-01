@@ -199,7 +199,7 @@ p.box-paragraph {
 
 .delete-container {
     width: 100%;
-    min-height: 300px;
+
     position: relative;
 }
 
@@ -229,7 +229,7 @@ p.box-paragraph {
     border-radius: 10px;
 }
 
-.post h3.post-head {
+h3.post-head {
     background-color: #0085A1;
     color: #fff;
     padding: 16px 0;
