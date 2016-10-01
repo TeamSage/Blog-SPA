@@ -1,37 +1,3 @@
-<!-- <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-preview">
-            <ul>
-                {{#this}}
-                <li>
-                    <a href="#">
-                        
-                        <h2 class="post-title">{{title}}</h2>
-                        <h3>description</h3>
-                        <p>
-                            {{content}}
-                        </p>
-                    </a>
-                    <div>
-                        <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
-                        <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
-                    </div>
-                    <span>Likes: <strong>{{likes}}</strong></span>
-                    <span>Dislikes: <strong>{{dislikes}}</strong></span>
-                    <p class="post-meta">Posted by <a href="#/posts/{{user}}?post=3">{{user}}</a> on date</p>
-                    <p>Categoryes:
-                    {{#categoryes}}
-                     <a href="#/home?category={{this}}">{{this}}</a>
-                    {{/categoryes}}
-                     </p>
-                </li>
-                {{/this}}
-            </ul>
-        </div>
-        <hr>
-    </div>
-</div>
- -->
 <!-- Show All Posts-->
 <!-- with their Categories -->
 <div class="row">
@@ -39,8 +5,8 @@
         <ul>
             {{#this}}
             <li>
-                <a href="#/home?title={{title}}">
-                    <h3 class="post-title">{{title}}</h3>
+                <a href="#/home?title={{data.title}}">
+                    <h3 class="post-title">{{data.title}}</h3>
                 </a>
                 {{#if result}}
                 <a href="#">
@@ -52,12 +18,11 @@
                     <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
                     <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
                 </div>
-                <span>Likes: <strong>{{likes}}</strong></span>
-                <span>Dislikes: <strong>{{dislikes}}</strong></span>
-                <p class="post-meta">Posted by <a href="#/posts/{{user}}">{{user}}</a> on date</p>
-                <p>Categoryes: {{#categoryes}}
-                    <a href="#/home?category={{this}}">{{this}}</a>
-                 {{/categoryes}}
+                <span>Likes: <strong>{{data.likes}}</strong></span>
+                <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
+                <p class="post-meta">Posted by <a href="#/posts/{{user}}">{{data.user}}</a> on date{{data.date}}</p>
+                <p>Categoryes: {{#data.categoryes}}
+                    <a href="#/home?category={{data.this}}">{{this}}</a> {{/data.categoryes}}
                 </p>
             </li>
             {{/this}}

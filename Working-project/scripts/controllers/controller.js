@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+
 import { dataService } from 'data';
 import { templatesLoader } from 'templates-loader';
 
