@@ -213,7 +213,9 @@ p.box-paragraph {
     padding-top: 7px;
 }
 
-.btn-add-post {
+.btn-add-post,
+.btn-view-post,
+.btn-my-post {
     width: 100% !important;
     display: block !important;
     margin-bottom: 30px;

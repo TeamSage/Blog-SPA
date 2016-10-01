@@ -49,9 +49,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a id="btn-signup" class="navbar-brand glyphicon glyphicon-plus-sign " href="#/register"> Register</a>
-                <a id="btn-login" class="navbar-brand glyphicon glyphicon-log-in " href="#/login"> Log In</a>
-                <a id="btn-logout" class="navbar-brand glyphicon glyphicon-log-out " href="#logout"> Log Out</a>
+                <span class="navbar-brand">Sage`s BLOG</span>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,10 +62,16 @@
                         <a href="#about">About</a>
                     </li>
                     <li>
-                        <a href="#posts">Posts</a>
+                        <a id="btn-user" href="#user-panel">User Panel</a>
                     </li>
                     <li>
-                        <a id="btn-user" href="#user-panel">User Panel</a>
+                        <a id="btn-signup" class="navbar-brand glyphicon glyphicon-plus-sign " href="#/register"> Register</a>
+                    </li>
+                    <li>
+                        <a id="btn-login" class="navbar-brand glyphicon glyphicon-log-in " href="#/login"> Log In</a>
+                    </li>
+                    <li>
+                        <a id="btn-logout" class="navbar-brand glyphicon glyphicon-log-out " href="#logout"> Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -92,20 +96,36 @@
         </div>
     </header>
 
+    <div id="most-rated" class="row">
+        <!--  Posts Template-->
+    </div>
+
     <div class="middle-section container">
         <div id="wrapper" class="row">
             <!-- Here comes templates-->
-
+            <!-- Buttons-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#add-post" class="btn btn-info btn-add-post btn-primary">Add  Post</a>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="#posts" class="btn btn-info btn-view-post btn-primary">All Posts</a>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="#user-posts" class="btn btn-info btn-my-post btn-primary">My Posts</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Here comes templates-->
+    </div>
 
-        <div id="most-rated" class="row">
-            <!--  Posts Template-->
-        </div>
 
-        <div id="most-recent" class="row">
-            <!--  Posts Template  -->
-        </div>
-        <!-- END of Posts Template-->
+    <div id="most-recent" class="row">
+        <!--  Posts Template  -->
+    </div>
+    <!-- END of Posts Template-->
     </div>
 
 
