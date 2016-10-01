@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 import { requester as request } from 'requester';
 import {kinveyConst} from 'kinvey-constants';
+import { notifier } from 'notifier';
 
 let dataService = (function() {
 
@@ -100,6 +101,40 @@ let dataService = (function() {
         });
     }
 
+    function getPost(id) {
+         let options = {
+            headers: {
+                [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
+            }
+        };
+         let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+         return request.get(url, options);
+    }
+
+     function updatePost(id, body, header) {
+        let options = {
+            headers: {
+                [HTTP_HEADER_KEY]: header
+            },
+            data: body
+        };
+        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+        return request.put(url,options);
+    }
+    function deletePostFromAdmin(header, id) {
+        let options = {
+            headers: {
+                [HTTP_HEADER_KEY]: header
+            }
+        };
+        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+
+        return request.delete(url, options);
+    }
+
+
+
+
     return {
         // register,
         // login,
@@ -107,7 +142,10 @@ let dataService = (function() {
         isLoggedIn,
         getUserInfo,
         getPosts,
-        addPost
+        addPost,
+        getPost,
+        updatePost,
+        deletePostFromAdmin
     };
 
 }());

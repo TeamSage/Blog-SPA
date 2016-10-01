@@ -21,7 +21,8 @@ class UserData {
             username: user.username,
             password: user.password,
             fullName: user.fullName,
-            email: user.email
+            email: user.email,
+            isAdmin: user.isAdmin
         };
 
         return requester.post(url, {
@@ -29,6 +30,7 @@ class UserData {
             data: theUser
         }).
         then((data) => {
+            debugger;
             if (!data.isAdmin){
                  localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
                   localStorage.setItem(USER, user.username);

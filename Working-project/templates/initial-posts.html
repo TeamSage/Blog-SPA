@@ -16,14 +16,14 @@
                     <a href="#" data-type="like" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
                     <a href="#" data-type="dislike" class="btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
                 </div>
-                <span>Likes: <strong>{{data.likes}}</strong></span>
-                <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
-                <p class="post-meta">Posted by <a href="#/posts/{{user}}">{{data.user}}</a> on date{{data.date}}</p>
-                <p>Categoryes: {{#data.categoryes}}
-                    <a href="#/home?category={{this}}">{{this}}</a> {{/data.categoryes}}
+                <span>Likes: <strong>{{likes}}</strong></span>
+                <span>Dislikes: <strong>{{dislikes}}</strong></span>
+                <p class="post-meta">Posted by <a href="#/posts/{{user}}">{{user}}</a> on date{{data.date}}</p>
+                <p>Categoryes:
+                     {{#categoryes}}
+                    <a href="#/home?category={{this}}">{{this}}</a>
+                     {{/categoryes}}
                 </p>
-                {{#if isOwn}}
-                <a data-id="{{data._id}}" class="btn-del">Delete</a> {{/if}}
             </li>
             <div class="comments">
 

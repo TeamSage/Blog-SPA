@@ -37,6 +37,10 @@ function send(method, url, options) {
      put(url, options) {
          return send('PUT', url, options);
      }
+
+     delete(url, options) {
+        return send('DELETE', url, options);
+     }
  }
 
 const requester = new Requester();

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul>
+            {{#this}}
+            <li>
+                <a href="#posts/{{data._id}}">
+                    <h3 class="post-title">{{data.title}}</h3>
+                </a>
+            
+                <div>
+                    <a href="#" data-id = "{{data._id}}" data-cre = "{{data._ic}}" data-type="like" class="btn-like btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
+                    <a href="#" data-id = "{{data._id}}" data-cre = "{{data._ic}}" data-type="dislike" class="btn-dislike btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
+                </div>
+                <span>Likes: <strong>{{data.likes}}</strong></span>
+                <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
+                <p class="post-meta">Posted by <a href="#/posts/{{data.user}}">{{data.user}}</a> on date</p>
+                <p>Categoryes:
+                     {{#data.categoryes}}
+                        <a href="#/home?category={{this}}">{{this}}</a>
+                     {{/data.categoryes}}
+                </p>
+                {{#if isOwn}}
+                <a data-id = "{{data._id}}" class = "btn-del-regular">Delete</a>
+                {{/if}}
+                 {{#if isAdmin}}
+                <a data-id = "{{data._id}}" class = "btn-del-admin" data-cre = "{{data._ic}}">Delete</a>
+                {{/if}}
+            </li>
+            <div class = "comments">
+
+            </div>
+            {{/this}}
+        </ul>
+    </div>
+</div>
