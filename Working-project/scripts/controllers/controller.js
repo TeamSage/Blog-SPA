@@ -25,77 +25,77 @@ let controller = (function() {
         //     });
     }
 
-    function register() {
-        dataService.isLoggedIn().
-        then((isLoggedIn) => {
-            if (isLoggedIn) {
-                window.location = '#/home';
-                return;
-            }
+    // function register() {
+    //     dataService.isLoggedIn().
+    //     then((isLoggedIn) => {
+    //         if (isLoggedIn) {
+    //             window.location = '#/home';
+    //             return;
+    //         }
 
-            templatesLoader.load('register').
-            then((templateHTML) => {
-                $('#wrapper').html(templateHTML);
-            }).then(() => {
-                $('#btn-reg').on('click', (ev) => {
-                    let userName = $('#firstName').val();
-                    let password = $('#password').val();
-                    let user = {
-                        username,
-                        password
-                    };
-                    dataService.register(user).
-                    then(() => {
-                        toggleClassWhenLoggedIn();
-                        window.location = '#/home';
-                    });
-                    ev.preventDefault();
-                    return false;
-                });
-            });
-        });
-    }
+    //         templatesLoader.load('register').
+    //         then((templateHTML) => {
+    //             $('#wrapper').html(templateHTML);
+    //         }).then(() => {
+    //             $('#btn-reg').on('click', (ev) => {
+    //                 let userName = $('#firstName').val();
+    //                 let password = $('#password').val();
+    //                 let user = {
+    //                     username,
+    //                     password
+    //                 };
+    //                 dataService.register(user).
+    //                 then(() => {
+    //                     toggleClassWhenLoggedIn();
+    //                     window.location = '#/home';
+    //                 });
+    //                 ev.preventDefault();
+    //                 return false;
+    //             });
+    //         });
+    //     });
+    // }
 
-    function login() {
-        dataService.isLoggedIn().
-        then((isLoggedIn) => {
-            if (isLoggedIn) {
-                window.location = '#/home';
-                return;
-            }
+    // function login() {
+    //     dataService.isLoggedIn().
+    //     then((isLoggedIn) => {
+    //         if (isLoggedIn) {
+    //             window.location = '#/home';
+    //             return;
+    //         }
 
-            templatesLoader.load('login').
-            then((templateHTML) => {
-                    $('#wrapper').html(templateHTML);
-                })
-                .then(() => {
-                    $('#btn-log').on('click', (ev) => {
-                        let username = $('#userName-log').val();
-                        let password = $('#password-log').val();
-                        let user = {
-                            username,
-                            password
-                        };
+    //         templatesLoader.load('login').
+    //         then((templateHTML) => {
+    //                 $('#wrapper').html(templateHTML);
+    //             })
+    //             .then(() => {
+    //                 $('#btn-log').on('click', (ev) => {
+    //                     let username = $('#userName-log').val();
+    //                     let password = $('#password-log').val();
+    //                     let user = {
+    //                         username,
+    //                         password
+    //                     };
 
-                        dataService.login(user).
-                        then(() => {
-                            toggleClassWhenLoggedIn();
-                            window.location = '#/home';
-                        });
-                        ev.preventDefault();
-                        return false;
-                    });
-                });
-        });
-    }
+    //                     dataService.login(user).
+    //                     then(() => {
+    //                         toggleClassWhenLoggedIn();
+    //                         window.location = '#/home';
+    //                     });
+    //                     ev.preventDefault();
+    //                     return false;
+    //                 });
+    //             });
+    //     });
+    // }
 
-    function logout() {
-        dataService.logout().
-        then(() => {
-            toggleClassWhenLoggedOut();
-            window.location = '#/home';
-        });
-    }
+    // function logout() {
+    //     dataService.logout().
+    //     then(() => {
+    //         toggleClassWhenLoggedOut();
+    //         window.location = '#/home';
+    //     });
+    // }
 
     function showUserPanel() {
         dataService.isLoggedIn().
@@ -235,9 +235,9 @@ let controller = (function() {
     }
 
     return {
-        register,
-        login,
-        logout,
+        // register,
+        // login,
+        // logout,
         showUserPanel,
         showPosts,
         home,
