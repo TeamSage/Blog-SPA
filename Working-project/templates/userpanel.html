@@ -13,4 +13,17 @@
 	</label>
 	<br/>
 	<button id = "btn-post-add">Post</button>
+	<br/>
+		
+	{{#if isAdmin}}
+	<label for "adminName">
+		<span>Admin name</span>
+		<input id = "admin-name" type="text" name="adminName" >
+	</label>
+	<label for "password">
+		<span>Password</span>
+		<input id = "admin-pass" type="text" name="password" >
+	</label>
+	<button id = "btn-add-admin">Add admine</button>
+	{{/if}}
 </div>

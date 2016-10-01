@@ -21,9 +21,12 @@ let dataService = (function() {
 
         return request.postJSON(url, user, options).
         then((data) => {
-            localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.userName + ':' + user.password));
-             localStorage.setItem(USER, user.username);
-            return data;
+            if (!data.isAdmin){
+                 localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
+                  localStorage.setItem(USER, user.username);
+            }
+
+             return data;
         });
     }
 

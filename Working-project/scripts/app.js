@@ -15,7 +15,7 @@ router.
 	on('logout', controller.logout).
 	on('user-panel', controller.showUserPanel).
 	on('home', controller.home).
-	on('posts', controller.showPosts).
+	on('posts', controller.postWorking).
 	on('posts/:user', (params) => controller.showUserPosts(params)).
 	on(() => {
 		router.navigate('/home');
