@@ -17,6 +17,9 @@
     <!-- Theme CSS -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
+    <!-- Toastr CSS-->
+    <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.css">
+    
     <!-- Custom Fonts -->
     <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -34,20 +37,6 @@
 <body>
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src='./systemjs-config.js'></script>
-
-
-    <script>
-        SystemJS.config({
-            'transpiler': 'plugin-babel',
-            'map': {
-                'plugin-babel': './node_modules/systemjs-plugin-babel/plugin-babel.js',
-                'systemjs-babel-build': './node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
-                'app': './scripts/app.js'
-            }
-        });
-
-        System.import('app');
-    </script>
 
 
     <!-- Navigation -->
