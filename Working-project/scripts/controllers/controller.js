@@ -131,7 +131,6 @@ let controller = (function() {
 
                     };
                     dataService.addPost(post);
-
                 });
 
                 $('#btn-add-admin').on('click', (ev) => {
@@ -143,7 +142,7 @@ let controller = (function() {
                         password,
                         'isAdmin': true
                     };
-                    
+
                      userData.register(admin)
                         .then((user) => {
                             notifier.success(`${user.username} successfully registered!`);
@@ -226,6 +225,28 @@ let controller = (function() {
                             user: data.user,
                             likes: data.likes + 1,
                             dislikes: data.dislikes,
+                            "_ic": data._ic,
+                        };
+                        return newData;
+
+                    }).then((newData) => {
+                        dataService.updatePost(dataID, newData, newData._ic);
+                    });
+            });
+
+            $('.btn-dislike').on('click', function() {
+                let dataID = $(this).attr('data-id');
+                let dataCre = $(this).attr('data-cre');
+
+                dataService.getPost(dataID, dataCre)
+                    .then((data) => {
+                         let newData = {
+                            title: data.title,
+                            content: data.content,
+                            categoryes: data.categoryes,
+                            user: data.user,
+                            likes: data.likes,
+                            dislikes: data.dislikes + 1,
                             "_ic": data._ic,
                         };
                         return newData;
