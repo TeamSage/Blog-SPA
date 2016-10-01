@@ -21,6 +21,7 @@
     <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -101,11 +102,43 @@
             </div>
         </div>
     </header>
-    
+
     <div class="middle-section container">
         <div id="wrapper" class="row">
             <!-- Here comes templates-->
-          
+            <div class="container">
+                <form action="">
+                    <label for="title">Add Title</label>
+                    <input type="text" id="title" class="form-control">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="category">Category</label>
+                            <input type="text" id="category" class="form-control">
+
+
+                            <select id="categories-drop-down" multiple="multiple">
+                    {{#categoryes}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/categoryes}}
+                </select>
+
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success add-category form-control">Add Category</button>
+                        </div>
+                    </div>
+
+                    <label for="content">Content</label>
+                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+
+                    <button class="btn btn-info">Post</button>
+
+                </form>
+
+
+
+            </div>
         </div>
 
         <div id="most-rated" class="row">
@@ -156,6 +189,8 @@
         </div>
     </footer>
 
+
+
     <!-- jQuery -->
     <script src="libs/jquery/jquery.min.js"></script>
 
@@ -169,7 +204,16 @@
     <!-- Theme JavaScript -->
     <script src="libs/clean-blog.min.js"></script>
 
+    <script src="libs/bootstrap-multiselect.js"></script>
+
     <script src="js/script.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#categories-drop-down').multiselect();
+        });
+    </script>
 
 </body>
 

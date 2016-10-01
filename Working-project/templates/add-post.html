@@ -1,0 +1,33 @@
+<div class="container">
+    <form action="">
+        <label for="title">Add Title</label>
+        <input type="text" id="title" class="form-control">
+
+        <div class="row">
+            <div class="col-md-8">
+                <label for="category">Category</label>
+                <input type="text" id="category" class="form-control">
+
+
+                <select id="categories-drop-down" multiple="multiple">
+                    {{#categoryes}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/categoryes}}
+                </select>
+
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success add-category form-control">Add Category</button>
+            </div>
+        </div>
+
+        <label for="content">Content</label>
+        <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+
+        <button class="btn btn-info">Post</button>
+
+    </form>
+
+
+
+</div>
