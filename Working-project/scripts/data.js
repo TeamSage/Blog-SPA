@@ -9,51 +9,51 @@ let dataService = (function() {
         USER = 'user';
 
 
-    function register(user) {
-        let token = `${kinveyConst.APP_ID}:${kinveyConst.APP_SECRET}`;
-        let options = {
-            headers: {
-                [HTTP_HEADER_KEY]: 'Basic ' + btoa(token)
-            }
-        };
+    // function register(user) {
+    //     let token = `${kinveyConst.APP_ID}:${kinveyConst.APP_SECRET}`;
+    //     let options = {
+    //         headers: {
+    //             [HTTP_HEADER_KEY]: 'Basic ' + btoa(token)
+    //         }
+    //     };
 
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}`;
+    //     let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}`;
 
-        return request.postJSON(url, user, options).
-        then((data) => {
-            if (!data.isAdmin){
-                 localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
-                  localStorage.setItem(USER, user.username);
-            }
+    //     return request.postJSON(url, user, options).
+    //     then((data) => {
+    //         if (!data.isAdmin){
+    //              localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
+    //               localStorage.setItem(USER, user.username);
+    //         }
 
-             return data;
-        });
-    }
+    //          return data;
+    //     });
+    // }
 
-    function login(user) {
-        let token = `${kinveyConst.APP_ID}:${kinveyConst.APP_SECRET}`;
-        let options = {
-            headers: {
-                [HTTP_HEADER_KEY]: 'Basic ' + btoa(token)
-            }
-        };
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/login`;
+    // function login(user) {
+    //     let token = `${kinveyConst.APP_ID}:${kinveyConst.APP_SECRET}`;
+    //     let options = {
+    //         headers: {
+    //             [HTTP_HEADER_KEY]: 'Basic ' + btoa(token)
+    //         }
+    //     };
+    //     let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/login`;
 
-        return request.postJSON(url, user, options).
-        then((data) => {
-            localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
-            localStorage.setItem(USER, user.username);
-            return data;
-        });
-    }
+    //     return request.postJSON(url, user, options).
+    //     then((data) => {
+    //         localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
+    //         localStorage.setItem(USER, user.username);
+    //         return data;
+    //     });
+    // }
 
-    function logout() {
-        return Promise.resolve().
-        then(() =>{
-         localStorage.removeItem(USER_CREDENTIAL);
-         localStorage.removeItem(USER);
-     });
-    }
+    // function logout() {
+    //     return Promise.resolve().
+    //     then(() =>{
+    //      localStorage.removeItem(USER_CREDENTIAL);
+    //      localStorage.removeItem(USER);
+    //  });
+    // }
 
     function isLoggedIn() {
         return Promise.resolve().
@@ -67,7 +67,9 @@ let dataService = (function() {
             }
         };
         let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/_me`;
-        return request.getJSON(url, options);
+        return request.get(url, {
+            headers: options.headers
+        });
     }
 
     function addPost(post) {
@@ -79,7 +81,10 @@ let dataService = (function() {
 
         let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
 
-        return request.postJSON(url, post, options);
+        return request.post(url, {
+            headers: options.headers,
+            data: post
+        });
     }
 
     function getPosts() {
@@ -90,13 +95,15 @@ let dataService = (function() {
         };
         let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
 
-        return request.getJSON(url, options);
+        return request.get(url, {
+            headers: options.headers
+        });
     }
 
     return {
-        register,
-        login,
-        logout,
+        // register,
+        // login,
+        // logout,
         isLoggedIn,
         getUserInfo,
         getPosts,
