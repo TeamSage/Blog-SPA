@@ -2,7 +2,7 @@
 
 import { dataService } from 'data';
 import { templatesLoader } from 'templates-loader';
-import { userData } from 'user-data';
+import {userData} from 'user-data';
 import {notifier} from 'notifier';
 
 let controller = (function() {
@@ -86,8 +86,11 @@ let controller = (function() {
         });
     }
 
-    function showPosts() {
-        Promise.all([dataService.getPosts(), templatesLoader.load('initial-posts'), templatesLoader.load('most-rated'), templatesLoader.load('most-recent')]).
+    let showPosts = () => {
+        Promise.all([dataService.getPosts(), 
+        templatesLoader.load('initial-posts'), 
+        templatesLoader.load('most-rated'),
+        templatesLoader.load('most-recent')]).
         then(([postsInfo, templateHTML, rated, liked]) => {
             postsInfo = postsInfo.map((p) => {
                 let date = new Date(p._kmd.ect);
