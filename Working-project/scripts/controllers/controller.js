@@ -2,8 +2,8 @@
 
 import { dataService } from 'data';
 import { templatesLoader } from 'templates-loader';
-import {userData} from 'user-data';
-import {notifier} from 'notifier';
+import { userData } from 'user-data';
+import { notifier } from 'notifier';
 
 let controller = (function() {
 
@@ -13,7 +13,7 @@ let controller = (function() {
             if (isLoggedIn) {
                 showPosts();
             } else {
-                 $('#most-rated').html('');
+                $('#most-rated').html('');
                 $('#most-recent').html('');
                 window.location = '#/login';
             }
@@ -40,7 +40,7 @@ let controller = (function() {
                 $('#btn-post-add').on('click', (ev) => {
                     let content = $('#content-post').val();
                     let title = $('#title-post').val();
-                    let categoryes = $('#category-post').val().split(',').
+                    let categoryes = $('#category').val().split(',').
                     filter(el => el.length !== 0).
                     map((el) => el.trim());
 
@@ -58,6 +58,9 @@ let controller = (function() {
 
                     };
                     dataService.addPost(post);
+                    window.location = "#/home";
+                    ev.preventDefault();
+                    return false;
                 });
 
                 $('#btn-add-admin').on('click', (ev) => {
@@ -79,18 +82,19 @@ let controller = (function() {
                             notifier.error(err);
                             console.log(err);
                         });
+
+
+                    ev.preventDefault();
+                    return false;
                 });
             });
         }).catch((err) => {
-             notifier.error("You are not logged in");
+            notifier.error("You are not logged in");
         });
     }
 
-    let showPosts = () => {
-        Promise.all([dataService.getPosts(), 
-        templatesLoader.load('initial-posts'), 
-        templatesLoader.load('most-rated'),
-        templatesLoader.load('most-recent')]).
+    function showPosts() {
+        Promise.all([dataService.getPosts(), templatesLoader.load('initial-posts'), templatesLoader.load('most-rated'), templatesLoader.load('most-recent')]).
         then(([postsInfo, templateHTML, rated, liked]) => {
             postsInfo = postsInfo.map((p) => {
                 let date = new Date(p._kmd.ect);
@@ -100,11 +104,14 @@ let controller = (function() {
                 };
             });
 
-            let mostRated = postsInfo.sort((p1, p2) => {
-                return (p2.likes - p1.likes);
+            let lastAdded = postsInfo.sort((p1, p2) => {
+                return (p2.date - p1.date);
             }).slice(0, 4);
 
-            let lastAdded = postsInfo.slice(0, 4);
+            let mostRated = postsInfo.sort((p1, p2) => {
+                return (p2.post.likes - p1.post.likes);
+            }).slice(0, 4);
+
 
 
             let html = templateHTML(postsInfo);
@@ -131,7 +138,7 @@ let controller = (function() {
 
             localStorage.setItem('posts', JSON.stringify(postsInfo));
         }).catch((err) => {
-             notifier.error("You are not logged in");
+            notifier.error("You are not logged in");
         });
     }
 
@@ -144,7 +151,7 @@ let controller = (function() {
                 category = category.toLowerCase();
                 posts = posts.filter((p) => {
 
-                   return p.categoryes.find((p) => {
+                    return p.categoryes.find((p) => {
                         return (p.toLowerCase() === category);
                     });
                 });
@@ -171,26 +178,38 @@ let controller = (function() {
 
             $('#most-recent').html('');
 
-            $('.btn-del-regular').on('click', function() {
+            $('.btn-del-regular').on('click', function(ev) {
 
                 let dataID = $(this).attr('data-id');
 
+                dataService.deletePostFromRegularUser(dataID)
+                    .then(() => {
+                        notifier.success(`You have successfully deleated post!`);
+                    });
+
+                ev.preventDefault();
+                window.location = "#/posts";
+                return false;
+
             });
 
-            $('.btn-del-admin').on('click', function() {
+            $('.btn-del-admin').on('click', function(ev) {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
 
                 dataService.deletePostFromAdmin(dataCre, dataID)
-                    .then(() => window.redi);
+                    .then(() => {
+                        notifier.success(`You have successfully deleated post!`);
+                    });
 
+                ev.preventDefault();
                 window.location = "#/posts";
+                return false;
             });
 
-            $('.btn-like').on('click', function() {
+            $('.btn-like').on('click', function(ev) {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
-
                 dataService.getPost(dataID, dataCre)
                     .then((data) => {
                         let newData = {
@@ -209,9 +228,12 @@ let controller = (function() {
                     });
                 window.location = "#/posts";
 
+                ev.preventDefault();
+                return false;
+
             });
 
-            $('.btn-dislike').on('click', () => {
+            $('.btn-dislike').on('click', function() {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
 
@@ -234,38 +256,54 @@ let controller = (function() {
 
                 window.location = "#/posts";
 
+                ev.preventDefault();
+                return false;
+
             });
 
-            $('#btn-paging').on('click', (ev) => {
+            $('#btn-paging').on('click', function() {
                 let page = $('#page').val();
                 let count = $('#count').val();
-
+                let postsInSinglePage;
+                page = +page;
+                count = +count;
                 
-                    let postsInSinglePage = projectionOfPosts.slice(0)
-                    .splice(page*count, count);
+                let collectionLength = projectionOfPosts.length;
+
+                if (((page * count) + count) > collectionLength) {
+                    count = projectionOfPosts.length - (page * count);
+                }
+
+                if ((page < 0) || (count <= 0)) {
+                    postsInSinglePage = projectionOfPosts.slice();
+                } else {
+                    postsInSinglePage = projectionOfPosts.slice(0)
+                        .splice(page * count, count);
+                }
+
                 let html = templateHTML(postsInSinglePage);
                 $('#wrapper').html(html);
-                
+
                 window.location = "#/posts";
 
             });
         }).catch((err) => {
-             notifier.error("You are not logged in");
+            notifier.error("You are not logged in");
         });
     }
 
     function showPostByID(params) {
         let id = params.id;
 
-       templatesLoader.load('just-post')
+        templatesLoader.load('just-post')
             .then((template) => {
                 let post = JSON.parse(localStorage.getItem('posts'))
                     .filter((p) => {
                         return p.post._id === id;
                     })[0];
 
-                    let html = template(post);
-                    $('#wrapper').html(html);
+                let html = template(post);
+                $('#wrapper').html(html);
             });
     }
 
@@ -316,6 +354,16 @@ let controller = (function() {
             });
     }
 
+    function showAbout() {
+        templatesLoader.load('about')
+            .then((template) => {
+                let html = template();
+                $('#wrapper').html(html);
+
+            });
+
+    }
+
 
     return {
         showUserPanel,
@@ -323,7 +371,8 @@ let controller = (function() {
         home,
         showUserPosts,
         postWorking,
-        showPostByID
+        showPostByID,
+        showAbout
     };
 
 }());

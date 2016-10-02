@@ -7,6 +7,7 @@ let router = new Navigo(null, true);
 
 router.
 	on('login', userController.login).
+	on('about', controller.showAbout).
 	on('register', userController.register).
 	on('logout', userController.logout).
 	on('user-panel', controller.showUserPanel).

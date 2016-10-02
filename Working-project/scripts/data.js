@@ -100,6 +100,18 @@ let dataService = (function() {
     }
 
 
+    function deletePostFromRegularUser(id) {
+        let options = {
+            headers: {
+                [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
+            }
+        };
+        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+
+        return request.delete(url, options);
+    }
+
+
 
 
     return {
@@ -113,7 +125,8 @@ let dataService = (function() {
         getPost,
         updatePost,
         deletePostFromAdmin,
-        getUserInfoById
+        getUserInfoById,
+        deletePostFromRegularUser
     };
 
 }());
