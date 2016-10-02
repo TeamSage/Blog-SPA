@@ -161,7 +161,7 @@ div.first-section {
 }
 
 .little_box h3,
-p.box-paragraph {
+p.box-paragraph-templates {
     color: #808080;
     text-align: center;
 }
@@ -184,7 +184,7 @@ p.box-paragraph {
     margin-top: -60px;
 }
 
-.box-paragraph {
+.box-paragraph-templates {
     height: 182px;
 }
 
@@ -240,4 +240,8 @@ h3.post-head {
 .post ul {
     background-color: #fff;
     color: #0085A1;
+}
+
+.box-paragraph {
+    height: 130px;
 }
