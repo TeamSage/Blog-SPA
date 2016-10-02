@@ -30,7 +30,7 @@ class UserData {
             data: theUser
         }).
         then((data) => {
-            debugger;
+            // debugger;
             if (!data.isAdmin){
                  localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
                   localStorage.setItem(USER, user.username);
