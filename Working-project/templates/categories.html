@@ -1,0 +1,15 @@
+<!-- Show all Categories-->
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <h3>Categories</h3>
+        <ul>
+            {{#data.categoryes}}
+            <li>
+                <a href="#categories/{{data.categoryes.name._id}}">
+                    <h3 class="post-title">{{category}}</h3>
+                </a>
+            </li>
+            {{/data.categoryes}}
+        </ul>
+    </div>
+</div>
