@@ -34,6 +34,7 @@ class UserData {
             if (!data.isAdmin){
                  localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
                   localStorage.setItem(USER, user.username);
+                  localStorage.setItem('userID', data._id);
             }
 
              return data;
@@ -56,6 +57,7 @@ class UserData {
         then((data) => {
             localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
             localStorage.setItem(USER, user.username);
+            localStorage.setItem('userID', data._id);
             return data;
         });
     }
@@ -65,6 +67,8 @@ class UserData {
         then(() =>{
          localStorage.removeItem(USER_CREDENTIAL);
          localStorage.removeItem(USER);
+            localStorage.removeItem('userID');
+
         })
         .then(() => {
             window.location = '#/home';

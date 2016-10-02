@@ -138,8 +138,12 @@ let controller = (function() {
         Promise.all([dataService.getPosts(), dataService.getUserInfo(), templatesLoader.load('posts')]).
         then(([posts, userInfo, templateHTML]) => {
             if (category) {
+                category = category.toLowerCase();
                 posts = posts.filter((p) => {
-                    return p.categoryes.includes(category);
+
+                   return p.categoryes.find((p) => {
+                        return (p.toLowerCase() === category);
+                    });
                 });
             }
             let projectionOfPosts = posts.map((p) => {
@@ -154,6 +158,7 @@ let controller = (function() {
                     isAdmin
                 };
             });
+            debugger;
 
             $('#wrapper').html(templateHTML(projectionOfPosts));
 
