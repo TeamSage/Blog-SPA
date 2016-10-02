@@ -9,10 +9,8 @@
                             <h3 class="post-title post-head">{{data.title}}</h3>
                         </a>
 
-                        <p>Categoryes: 
-                        {{#data.categoryes}}
-                            <a href="#/posts?category={{this}}">{{this}}</a>
-                             {{/data.categoryes}}
+                        <p>Categoryes: {{#data.categoryes}}
+                            <a href="#/posts?category={{this}}">{{this}}</a> {{/data.categoryes}}
                         </p>
                         <div>
                             <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="like" class="btn-like btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
@@ -20,16 +18,10 @@
                         </div>
                         <span>Likes: <strong>{{data.likes}}</strong></span>
                         <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
-                        <br>
-                        <br>
-                        <hr>
-                        
-                        Posted by
-                         <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a> on date
-                        <hr>
-
-                        <br>
-
+                        <p> Posted by
+                            <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a>
+                             on {{date}}
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">

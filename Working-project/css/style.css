@@ -266,8 +266,22 @@ h3.post-head {
     text-align: center;
 }
 
-
-}
 .box-paragraph {
     height: 130px;
+}
+
+#btn-post-add,
+#btn-add-admin {
+    background-color: #0085A1;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+label {
+    color: #2e3636;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
