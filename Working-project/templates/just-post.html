@@ -2,21 +2,21 @@
     <div class="row">
         <div class="col-md-8">
             <div class="post">
-                <h3>{{post.title}}</h3>
-                <p>{{post.content}}</p>
-                {{#post.categoryes}}
-                <span>{{this}}</span> 
-                {{/post.categoryes}}
                 
-                <span>Likes: <strong>{{post.likes}}</strong></span>
-                <span>Dislikes: <strong>{{post.dislikes}}</strong></span>
-                  Posted by
-                         <a class="user" href="#/user/{{post._acl.creator}}/?cre={{post._ic}}" data-id="{{post._acl.creator}}" data-cre="{{post._ic}}">{{post.user}}</a> on date {{date}}
-                        <hr>
+                <h3 class="post-head">{{post.title}}</h3>
+                <div class="white-background">
+                    <p>{{post.content}}</p>
+                    {{#post.categoryes}}
+                    <span>{{this}}</span> {{/post.categoryes}}
 
+                    <span>Likes: <strong>{{post.likes}}</strong></span>
+                    <span>Dislikes: <strong>{{post.dislikes}}</strong></span> Posted by
+                    <a class="user" href="#/user/{{post._acl.creator}}/?cre={{post._ic}}" data-id="{{post._acl.creator}}" data-cre="{{post._ic}}">{{post.user}}</a> on date {{date}}
+                </div>
+                <hr>
             </div>
         </div>
     </div>
-   
-    </div>
+
+</div>
 </div>

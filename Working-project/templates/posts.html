@@ -1,11 +1,5 @@
 <div class="container">
     <ul>
-    <div class = "row">
-    <input id = "page" type="text" value="page">
-    <input id = "count" type="text" value="count">
-    <button id = "btn-paging">GO</button>
-
-    </div>
         {{#this}}
         <li>
             <div class="row">
@@ -15,9 +9,7 @@
                             <h3 class="post-title post-head">{{data.title}}</h3>
                         </a>
 
-                        <p>
-                        Categoryes: 
-                        {{#data.categoryes}}
+                        <p>Categoryes: {{#data.categoryes}}
                             <a href="#/posts?category={{this}}">{{this}}</a>
                              {{/data.categoryes}}
                         </p>
@@ -27,23 +19,16 @@
                         </div>
                         <span>Likes: <strong>{{data.likes}}</strong></span>
                         <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
-                        <br>
-                        <br>
-                        <hr>
-                        
-                        Posted by
-                         <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a> on date {{date}}
-                        <hr>
-
-                        <br>
-
+                        <p> Posted by
+                            <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a>
+                             on {{date}}
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="delete-container">
                         {{#if isOwn}}
-                        <a data-id="{{data._id}}" class="btn-del-regular">Delete</a> {{/if}} 
-                        {{#if isAdmin}}
+                        <a data-id="{{data._id}}" class="btn-del-regular">Delete</a> {{/if}} {{#if isAdmin}}
                         <a data-id="{{data._id}}" class="btn-del-admin" data-cre="{{data._ic}}">Delete</a> {{/if}}
                     </div>
                 </div>
