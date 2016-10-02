@@ -181,10 +181,11 @@ let controller = (function() {
                 dataService.deletePostFromAdmin(dataCre, dataID)
                     .then(() => window.redi);
 
+
                 window.location = "#/posts";
             });
 
-            $('.btn-like').on('click', function() {
+            $('.btn-like').on('click', (ev) => {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
 
@@ -205,6 +206,9 @@ let controller = (function() {
                         dataService.updatePost(dataID, newData, newData._ic);
                     });
                 window.location = "#/posts";
+
+                 ev.preventDefault();
+                 return false;
 
             });
 
@@ -231,15 +235,22 @@ let controller = (function() {
 
                 window.location = "#/posts";
 
+                ev.preventDefault();
+                 return false;
+
             });
 
             $('#btn-paging').on('click', (ev) => {
                 let page = $('#page').val();
                 let count = $('#count').val();
-
-                
-                    let postsInSinglePage = projectionOfPosts.slice(0)
-                    .splice(page*count, count);
+                let postsInSinglePage;
+                if (((page * count) + count) > projectionOfPosts.length || page < 0 || count <= 0) {
+                    postsInSinglePage = projectionOfPosts.slice();
+                } else {
+                     postsInSinglePage = projectionOfPosts.slice(0)
+                         .splice(page*count, count);
+                 }
+                   
                 let html = templateHTML(postsInSinglePage);
                 $('#wrapper').html(html);
                 
@@ -313,6 +324,16 @@ let controller = (function() {
             });
     }
 
+    function showAbout() {
+        templatesLoader.load('about')
+            .then((template) => {
+                let html = template();
+             $('#wrapper').html(html);
+
+            });
+        
+    }
+
 
     return {
         showUserPanel,
@@ -320,7 +341,8 @@ let controller = (function() {
         home,
         showUserPosts,
         postWorking,
-        showPostByID
+        showPostByID,
+        showAbout
     };
 
 }());
