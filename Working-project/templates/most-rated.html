@@ -9,12 +9,11 @@
             <p class="box-paragraph-templates">{{title}}</p>
             <input type="submit" value="Read More">
             <p class="post-meta">Posted by <a href="#">{{user}}</a> on date</p>
-            {{> facebookShare }}
-
+            <p class="post-meta">{{ facebookShare }}</p>
         </div>
         {{/this}}
     </div>
 </div>
 <script>
-  FB.XFBML.parse();
+    FB.XFBML.parse();
 </script>

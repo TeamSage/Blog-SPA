@@ -15,8 +15,9 @@
                             <li>
                                 <h3>{{title}}</h3>
                                 <p>{{content}}</p>
-                                {{#categoryes}}
-                                <span>{{this}}</span> {{/categoryes}}
+                                <p>Categories: {{#categoryes}}
+                                    <a href="#categories/{{data.categoryes.name._id}}">{{this}}</a>{{/categoryes}}
+                                </p>
                             </li>
                         </ul>
                     </div>

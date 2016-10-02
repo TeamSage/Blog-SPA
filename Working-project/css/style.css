@@ -213,6 +213,25 @@ p.box-paragraph-templates {
     padding-top: 7px;
 }
 
+.username-color {
+    background: #ccc;
+    padding: 10px;
+}
+
+.white-background {
+    background: #fff;
+}
+
+.button-category {
+    background: #ccc;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.post-ul-wrapper {
+    padding: 0;
+}
+
 .btn-add-post,
 .btn-categories,
 .btn-my-post {
@@ -246,8 +265,9 @@ h3.post-head {
     padding-top: 10px;
     text-align: center;
 }
-}
 
+
+}
 .box-paragraph {
     height: 130px;
 }

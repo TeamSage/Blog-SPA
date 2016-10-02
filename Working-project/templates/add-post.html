@@ -1,34 +1,25 @@
- <div class="container">
-                <form action="">
-                    <label for="title">Add Title</label>
-                    <input type="text" id="title" class="form-control">
-
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="category">Category</label>
-                            <input type="text" id="category" class="form-control">
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-success add-category form-control">Add Category</button>
-                        </div>
-
-                    </div>
-                    <div class="categories-wrapper">
-                        <select id="categories-drop-down" multiple="multiple">
-                                    {{#data.categoryes}}
-                                    <option value="{{this}}">{{this}}</option>
-                                    {{/data.categoryes}}
-                                </select>
-                    </div>
-
-
-                    <label for="content">Content</label>
-                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
-
-                    <button class="btn btn-info">Post</button>
-
-                </form>
-
-
-
+<div class="container">
+    <form action="">
+        <label for="title">Add Title</label>
+        <input type="text" id="title" class="form-control">
+        <div class="row">
+            <div class="col-md-8">
+                <label for="category">Category</label>
+                <input type="text" id="category" class="form-control">
             </div>
+            <div class="col-md-4">
+                <button class="btn btn-success add-category form-control">Add Category</button>
+            </div>
+        </div>
+        <div class="categories-wrapper">
+            <select id="categories-drop-down" multiple="multiple">
+                {{#data.categoryes}}
+                    <option value="{{this}}">{{this}}</option>
+                {{/data.categoryes}}
+            </select>
+        </div>
+        <label for="content">Content</label>
+        <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+        <button class="btn btn-info">Post</button>
+    </form>
+</div>
