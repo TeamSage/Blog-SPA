@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="">
+  
         <label for="title-post">Add Title</label>
         <input id="title-post" type="text" name="title" class="form-control">
         <div class="row">
@@ -7,17 +7,9 @@
                 <label for="category">Category</label>
                 <input type="text" id="category" class="form-control">
             </div>
-            <div class="col-md-4">
-                <button class="btn btn-success add-category form-control">Add Category</button>
-            </div>
+           
         </div>
-        <div class="categories-wrapper">
-            <select id="categories-drop-down" multiple="multiple" name="category">
-                {{#data.categoryes}}
-                    <option value="{{this}}">{{this}}</option>
-                {{/data.categoryes}}
-            </select>
-        </div>
+       
         <label for="content-post">Content</label>
         <textarea id="content-post " name="category" class="form-control" cols="30" rows="10"></textarea>
         <button id="btn-post-add" class="btn btn-info">Post</button>
@@ -36,5 +28,4 @@
             <button id="btn-add-admin" class="form-control">Add admine</button> {{/if}}
         </div>
 
-    </form>
 </div>
