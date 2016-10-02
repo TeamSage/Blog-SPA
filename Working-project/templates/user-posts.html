@@ -1,38 +1,42 @@
 <div class="container">
+  
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-info btn-add-post">Add New Post</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="post-head">{{data.user.username}}`s Posts</h3>
-            {{#data.user.posts}}
+            <h3 class="post-head">{{username}}`s Posts</h3>
             <div class="row">
                 <div class="col-md-8">
+
                     <div class="post">
                         <ul>
                             <li>
-                                <h3>{{title}}</h3>
-                                <p>{{content}}</p>
-                                <p>Categories: {{#categoryes}}
-                                    <a href="#categories/{{data.categoryes.name._id}}">{{this}}</a>{{/categoryes}}
-                                </p>
+                               <span>Username: {{username}}</span>
                             </li>
+                            <li>
+                               <span>FullName: {{fullName}}</span>
+                            </li>
+                            <li>
+                               <span>Email: {{email}}</span>
+                            </li>
+                            <li>
+                               <span>Post count: {{postCount}}</span>
+                            </li>
+                            <li>
+                               <span>Likes count: {{likes}}</span>
+                            </li>
+                             <li>
+                               <span>Dislikes count: {{dislikes}}</span>
+                            </li>
+                           
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="delete-container">
-                        {{#if isOwn}}
-                        <button data-id="{{data._id}}" class="btn btn-danger btn-del-regular">Delete</button>
-                        <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{#if isAdmin}}
-                        <button data-id="{{data._id}}" class=" btn btn-danger btn-del-admin" data-cre="{{data._ic}}">Delete</button>
-                        <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{/if}}
-                    </div>
-                </div>
+                
             </div>
-            {{/data.user.posts}}
+
         </div>
+
+
     </div>
 </div>
+
+                          

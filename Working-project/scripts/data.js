@@ -73,6 +73,19 @@ let dataService = (function() {
         });
     }
 
+      function getUserInfoById(id, header) {
+        let options = {
+            headers: {
+                [HTTP_HEADER_KEY]: header
+            }
+        };
+        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/${id}`;
+         return request.get(url, {
+            headers: options.headers
+        });
+    }
+
+
     function addPost(post) {
         let options = {
             headers: {
@@ -145,7 +158,8 @@ let dataService = (function() {
         addPost,
         getPost,
         updatePost,
-        deletePostFromAdmin
+        deletePostFromAdmin,
+        getUserInfoById
     };
 
 }());

@@ -6,9 +6,9 @@
         </div>
         {{#this}}
         <div class="little_box">
-            <p class="box-paragraph-templates">{{title}}</p>
-            <input type="submit" value="Read More">
-            <p class="post-meta">Posted by <a href="#">{{user}}</a> on date</p>
+            <p class="box-paragraph-templates">{{post.title}}</p>
+            <input class = "more" type="submit" value="Read More" data-id = "{{post._id}}">
+            <p class="post-meta">Posted by <a href="#">{{post.user}}</a> on date {{date}}</p>
             <p class="post-meta">{{ facebookShare }}</p>
         </div>
         {{/this}}

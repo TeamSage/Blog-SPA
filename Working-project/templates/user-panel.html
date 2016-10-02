@@ -1,43 +1,29 @@
-<div class="container">
-    <div class="text-center">
-        <h3>{{user._id.username}}`s Blog</h3>
-        <p>Name: {{user._id.fullname}}</p>
-        <p>Email: {{user._id.email}}</p>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <h4 class="username-color">{{user._id.username}}`s Posts</h4>
-            {{#user._id.posts}}
-            <ul class="user-posts-list">
-                <li>
-                    <a href="#current-post/{{data._id}}">
-                        <h3 class="post-title post-head">{{title}}</h3>
-                    </a>
-                    <div class="white-background">
-                        <p>Categories: {{#categoryes}}
-                            <a href="#categories/{{data.categoryes.name._id}}">{{this}}</a>{{/categoryes}}
-                        </p>
-                        <div>
-                            <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="like" class="btn-like btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
-                            <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="dislike" class="btn-dislike btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
-                        </div>
-                        <span>Likes: <strong>{{likes}}</strong></span>
-                        <span>Dislikes: <strong>{{dislikes}}</strong></span>
-                        <p>Posted on {{data._id.date}}</p>
-
-                    </div>
-                </li>
-        </div>
-        <div class="col-md-4">
-            <div class="delete-container">
-                {{#if isOwn}}
-                <button data-id="{{data._id}}" class="btn btn-danger btn-del-regular">Delete</button>
-                <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{#if isAdmin}}
-                <button data-id="{{data._id}}" class=" btn btn-danger btn-del-admin" data-cre="{{data._ic}}">Delete</button>
-                <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{/if}}
-            </div>
-        </div>
-        {{/user._id.posts}}
-        </ul>
-    </div>
+<div>
+        <label for "title">
+        <span>Title</span>
+        <input id = "title-post" type="text" name="title" >
+    </label>
+    <label for "category">
+        <span>Content</span>
+        <input id = "content-post" type="text" name="category" >
+    </label>
+    <label for "category">
+        <span> Add comma seperated category</span>
+        <input id = "category-post" type="text" name="category" >
+    </label>
+    <br/>
+    <button id = "btn-post-add">Post</button>
+    <br/>
+        
+    {{#if isAdmin}}
+    <label for "adminName">
+        <span>Admin name</span>
+        <input id = "admin-name" type="text" name="adminName" >
+    </label>
+    <label for "password">
+        <span>Password</span>
+        <input id = "admin-pass" type="text" name="password" >
+    </label>
+    <button id = "btn-add-admin">Add admine</button>
+    {{/if}}
 </div>

@@ -11,92 +11,12 @@ let controller = (function() {
             if (isLoggedIn) {
                 showPosts();
             } else {
-                templatesLoader.load('index-notLoggedIn')
+                templatesLoader.load('login')
                     .then((templ) => $('#wrapper').html(templ));
+                window.location = '#/home';
             }
         });
     }
-
-        //TODO- load posts 
-        // templatesLoader.get('home').
-        //     then((templateHTML) => {
-        //         let template = Handlebars.compile(templateHTML);
-        //         let html = template();
-        //         $('#container').html(html);
-        //     });
-    
-
-    // function register() {
-    //     dataService.isLoggedIn().
-    //     then((isLoggedIn) => {
-    //         if (isLoggedIn) {
-    //             window.location = '#/home';
-    //             return;
-    //         }
-
-    //         templatesLoader.load('register').
-    //         then((templateHTML) => {
-    //             $('#wrapper').html(templateHTML);
-    //         }).then(() => {
-    //             $('#btn-reg').on('click', (ev) => {
-    //                 let userName = $('#firstName').val();
-    //                 let password = $('#password').val();
-    //                 let user = {
-    //                     username,
-    //                     password
-    //                 };
-    //                 dataService.register(user).
-    //                 then(() => {
-    //                     toggleClassWhenLoggedIn();
-    //                     window.location = '#/home';
-    //                 });
-    //                 ev.preventDefault();
-    //                 return false;
-    //             });
-    //         });
-    //     });
-    // }
-
-    // function login() {
-    //     dataService.isLoggedIn().
-    //     then((isLoggedIn) => {
-    //         if (isLoggedIn) {
-    //             window.location = '#/home';
-    //             return;
-    //         }
-
-    //         templatesLoader.load('login').
-    //         then((templateHTML) => {
-    //                 $('#wrapper').html(templateHTML);
-    //             })
-    //             .then(() => {
-    //                 $('#btn-log').on('click', (ev) => {
-    //                     let username = $('#userName-log').val();
-    //                     let password = $('#password-log').val();
-    //                     let user = {
-    //                         username,
-    //                         password
-    //                     };
-
-    //                     dataService.login(user).
-    //                     then(() => {
-    //                         toggleClassWhenLoggedIn();
-    //                         window.location = '#/home';
-    //                     });
-    //                     ev.preventDefault();
-    //                     return false;
-    //                 });
-    //             });
-    //     });
-    // }
-
-    // function logout() {
-    //     dataService.logout().
-    //     then(() => {
-    //         toggleClassWhenLoggedOut();
-    //         window.location = '#/home';
-    //     });
-    // }
 
     function showUserPanel() {
         dataService.isLoggedIn().
@@ -106,8 +26,13 @@ let controller = (function() {
                 return;
             }
 
-            Promise.all([dataService.getUserInfo(), templatesLoader.load('userpanel')]).
+            Promise.all([dataService.getUserInfo(), templatesLoader.load('user-panel')]).
             then(([userInfo, templateHTML]) => {
+
+                $('#most-rated').html('');
+
+                $('#most-recent').html('');
+
                 $('#wrapper').html(templateHTML(userInfo));
 
                 $('#btn-post-add').on('click', (ev) => {
@@ -143,7 +68,7 @@ let controller = (function() {
                         'isAdmin': true
                     };
 
-                     userData.register(admin)
+                    userData.register(admin)
                         .then((user) => {
                             notifier.success(`${user.username} successfully registered!`);
                             window.location = '#/home';
@@ -157,14 +82,24 @@ let controller = (function() {
         });
     }
 
+
     function showPosts() {
         Promise.all([dataService.getPosts(), templatesLoader.load('initial-posts'), templatesLoader.load('most-rated'), templatesLoader.load('most-recent')]).
         then(([postsInfo, templateHTML, rated, liked]) => {
+            postsInfo = postsInfo.map((p) => {
+                let date = new Date(p._kmd.ect);
+                return {
+                    post: p,
+                    date
+                };
+            });
+
             let mostRated = postsInfo.sort((p1, p2) => {
                 return (p2.likes - p1.likes);
             }).slice(0, 4);
-           
+
             let lastAdded = postsInfo.slice(0, 4);
+
 
             let html = templateHTML(postsInfo);
             $('#wrapper').html(html);
@@ -174,13 +109,39 @@ let controller = (function() {
 
             let addedHTML = liked(lastAdded);
             $('#most-recent').html(addedHTML);
+
+            $('.more').on('click', function() {
+                let dataID = $(this).attr('data-id');
+                let currentPost = postsInfo.filter((p) => {
+                    return p.post._id === dataID;
+                });
+
+                templatesLoader.load('just-post')
+                    .then((template) => {
+
+                        let html = template(currentPost[0]);
+                        $('#wrapper').html(html);
+
+                    });
+            });
+
+            localStorage.setItem('posts', JSON.stringify(postsInfo));
+
         });
 
     }
 
-    function postWorking() {
+    function postWorking(params) {
+        let category = getQueryParams(window.location.hash).ategory;
+
+
         Promise.all([dataService.getPosts(), dataService.getUserInfo(), templatesLoader.load('posts')]).
         then(([posts, userInfo, templateHTML]) => {
+            if (category) {
+                posts = posts.filter((p) => {
+                    return p.categoryes.includes(category);
+                });
+            }
             let projectionOfPosts = posts.map((p) => {
                 let isOwn = p._acl.creator === localStorage.getItem('userID');
                 let isAdmin = userInfo.isAdmin;
@@ -195,6 +156,10 @@ let controller = (function() {
             });
 
             $('#wrapper').html(templateHTML(projectionOfPosts));
+
+            $('#most-rated').html('');
+
+            $('#most-recent').html('');
 
             $('.btn-del-regular').on('click', function() {
 
@@ -218,7 +183,7 @@ let controller = (function() {
 
                 dataService.getPost(dataID, dataCre)
                     .then((data) => {
-                         let newData = {
+                        let newData = {
                             title: data.title,
                             content: data.content,
                             categoryes: data.categoryes,
@@ -232,6 +197,8 @@ let controller = (function() {
                     }).then((newData) => {
                         dataService.updatePost(dataID, newData, newData._ic);
                     });
+                window.location = "#/posts";
+
             });
 
             $('.btn-dislike').on('click', function() {
@@ -240,7 +207,7 @@ let controller = (function() {
 
                 dataService.getPost(dataID, dataCre)
                     .then((data) => {
-                         let newData = {
+                        let newData = {
                             title: data.title,
                             content: data.content,
                             categoryes: data.categoryes,
@@ -254,50 +221,63 @@ let controller = (function() {
                     }).then((newData) => {
                         dataService.updatePost(dataID, newData, newData._ic);
                     });
+
+                window.location = "#/posts";
+
             });
         });
     }
 
-   
+    function getQueryParams(query) {
+        query = query.replace(/^.*\?/, '');
+
+        let hash, vars = {},
+            hashes = query.substr(1)
+            .split('&').forEach(val => {
+                hash = val.split('=');
+                vars[hash[0]] = hash[1];
+            });
+        return vars;
+    }
+
 
     function showUserPosts(params) {
-        //debugger;
-        Promise.all([dataService.getPosts(), templatesLoader.load('user')]).
-        then(([posts, templateHTML]) => {
-            posts = posts.filter((post) => {
-                return post.user === params.user;
+
+        let dataID = params.userID;
+
+        let dataCre = getQueryParams(window.location.hash).re;
+        Promise.all([dataService.getUserInfoById(dataID, dataCre), templatesLoader.load('user-posts')])
+            .then(([userInfo, template]) => {
+                let posts = JSON.parse(localStorage.getItem('posts'));
+                let userPosts = posts.filter((p) => {
+                    return p.post._acl.creator === userInfo._id;
+                });
+
+                let postCount = userPosts.length;
+                let likes = 0;
+                let dislikes = 0;
+                userPosts.forEach((p) => {
+                    likes += p.post.likes;
+                    dislikes += p.post.dislikes;
+                });
+                let userStatistic = {
+                    username: userInfo.username,
+                    postCount,
+                    likes,
+                    dislikes,
+                    fullName: userInfo.fullName,
+                    email: userInfo.email
+                };
+
+                let htmlToRender = template(userStatistic);
+
+                $('#wrapper').html(htmlToRender);
             });
 
-
-            let user = params.user;
-            let obj = {
-                user,
-                posts
-            };
-            $('#wrapper').html(templateHTML(obj));
-        });
     }
 
-    function toggleClassWhenLoggedIn() {
-        $('#register-link').addClass('hidden');
-        $('#login-link').addClass('hidden');
-        $('#logout-link').removeClass('hidden');
-        $('#userpanel-link').removeClass('hidden');
-
-    }
-
-    function toggleClassWhenLoggedOut() {
-        $('#register-link').removeClass('hidden');
-        $('#login-link').removeClass('hidden');
-        $('#logout-link').addClass('hidden');
-        $('#userpanel-link').addClass('hidden');
-
-    }
 
     return {
-        // register,
-        // login,
-        // logout,
         showUserPanel,
         showPosts,
         home,
