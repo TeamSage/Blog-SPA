@@ -6,55 +6,32 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3 class="post-head">{{data.user}}`s Posts</h3>
-            {{#data.posts}}
+            <h3 class="post-head">{{data.user.username}}`s Posts</h3>
+            {{#data.user.posts}}
             <div class="row">
                 <div class="col-md-8">
-
                     <div class="post">
                         <ul>
                             <li>
-                                <h3>{{data.title}}</h3>
-                                <p>{{data.content}}</p>
-                                {{#data.categoryes}}
-                                <span>{{this}}</span> {{/data.categoryes}}
+                                <h3>{{title}}</h3>
+                                <p>{{content}}</p>
+                                {{#categoryes}}
+                                <span>{{this}}</span> {{/categoryes}}
                             </li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="col-md-2">
                     <div class="delete-container">
-                        <button class="btn btn-danger">Delete</button>
-                        <button class="btn btn-info">Edit</button>
+                        {{#if isOwn}}
+                        <button data-id="{{data._id}}" class="btn btn-danger btn-del-regular">Delete</button>
+                        <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{#if isAdmin}}
+                        <button data-id="{{data._id}}" class=" btn btn-danger btn-del-admin" data-cre="{{data._ic}}">Delete</button>
+                        <button data-id="{{data._id}}" class="btn btn-info ">Edit</button> {{/if}} {{/if}}
                     </div>
                 </div>
             </div>
-            <div class="comments">
-                {{#if comments}}
-                <ul>
-                    {{#each comments}}
-                    <li>
-                        <div class="comment">
-                            <p class="author">
-                                <a class="user " href="/user/{{author}}">{{author}}</a>
-                            </p>
-                            <pre class="content">{{text}}</pre>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="delete-container">
-                                <button class="btn btn-danger">Delete</button>
-                                <button class="btn btn-info">Edit</button>
-                            </div>
-                        </div>
-                    </li>
-                    {{/each}}
-                </ul>
-                {{/if}}
-            </div>
-            <label for="comment">Comment</label>
-            <textarea name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
-            <button class="btn btn-info">Comment</button> {{/data.posts}}
+            {{/data.user.posts}}
         </div>
     </div>
 </div>

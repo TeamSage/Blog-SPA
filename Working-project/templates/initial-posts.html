@@ -1,4 +1,4 @@
-<!-- List of all Categories-->
+<!--
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <ul>
@@ -23,6 +23,31 @@
                 </div>
             </li>
             {{/this}}
+        </ul>
+    </div>
+</div>
+-->
+
+
+<!-- Show all Titles from chosen Categories-->
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <h3>{{data.categoryes.name._id}}</h3>
+        <ul>
+            {{#data.categoryes.name._id.posts}}
+            <li>
+                <a href="#current-post/{{data.categoryes.name._id.posts._id}}">
+                    <h3 class="post-title">{{title}}</h3>
+                </a>
+                <div>
+                    <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="like" class="btn-like btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
+                    <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="dislike" class="btn-dislike btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-down"></a>
+                </div>
+                <span>Likes: <strong>{{likes}}</strong></span>
+                <span>Dislikes: <strong>{{dislikes}}</strong></span>
+                <p>Posted by <a href="#/posts/{{username}}">{{username}}</a> on date{{date}}</p>
+            </li>
+            {{/data.categoryes.name._id.posts}}
         </ul>
     </div>
 </div>
