@@ -25,4 +25,9 @@ class TemplatesLoader {
 
 var templatesLoader = new TemplatesLoader();
 
+loadTemplate('facebookShare').then(function(template) {
+  Handlebars.registerPartial('facebookShare', template);
+})
+
+
 export {templatesLoader};

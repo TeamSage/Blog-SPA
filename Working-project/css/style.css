@@ -185,7 +185,7 @@ p.box-paragraph {
 }
 
 .box-paragraph {
-    height: 182px;
+    height: 130px;
 }
 
 .input-read-more {
@@ -240,4 +240,9 @@ h3.post-head {
 .post ul {
     background-color: #fff;
     color: #0085A1;
+}
+
+.facebook-share-button {
+    padding-top: 10px;
+    text-align: center;
 }
