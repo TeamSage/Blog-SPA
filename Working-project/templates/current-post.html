@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="post">
+                <h3>{{data.title}}</h3>
+                <p>{{data.content}}</p>
+                {{#data.categoryes}}
+                <span>{{this}}</span> {{/data.categoryes}}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="delete-container">
+                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-info">Edit</button>
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        {{#if comments}}
+        <ul>
+            {{#each comments}}
+            <li>
+                <div class="comment">
+                    <p class="author">
+                        <a class="user " href="/user/{{author}}">{{author}}</a>
+                    </p>
+                    <pre class="content">{{text}}</pre>
+                </div>
+                <div class="col-md-2">
+                    <div class="delete-container">
+                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-info">Edit</button>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
+    <label for="comment">Comment</label>
+    <textarea name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
+    <button class="btn btn-info">Comment</button>
+</div>
