@@ -1,0 +1,19 @@
+<div class="first-section">
+    <div class="container">
+        <div class="custom_box">
+            <h3><span>Most liked Posts</span></h3>
+            <div class="clear"></div>
+        </div>
+        {{#this}}
+        <div class="little_box">
+            <p class="box-paragraph-templates">{{post.title}}</p>
+            <input class = "more" type="submit" value="Read More" data-id = "{{post._id}}">
+            <p class="post-meta">Posted by <strong>{{post.user}}</strong> on date {{date}}</p>
+            <p class="post-meta">{{ facebookShare }}</p>
+        </div>
+        {{/this}}
+    </div>
+</div>
+<script>
+    FB.XFBML.parse();
+</script>
