@@ -3,6 +3,8 @@
 import { dataService } from 'data';
 import { templatesLoader } from 'templates-loader';
 import { userData } from 'user-data';
+import {notifier} from 'notifier';
+
 let controller = (function() {
 
     function home() {
@@ -11,9 +13,9 @@ let controller = (function() {
             if (isLoggedIn) {
                 showPosts();
             } else {
-                templatesLoader.load('login')
-                    .then((templ) => $('#wrapper').html(templ));
-                window.location = '#/home';
+                 $('#most-rated').html('');
+                $('#most-recent').html('');
+                window.location = '#/login';
             }
         });
     }
@@ -79,9 +81,10 @@ let controller = (function() {
                         });
                 });
             });
+        }).catch((err) => {
+             notifier.error("You are not logged in");
         });
     }
-
 
     function showPosts() {
         Promise.all([dataService.getPosts(), templatesLoader.load('initial-posts'), templatesLoader.load('most-rated'), templatesLoader.load('most-recent')]).
@@ -118,22 +121,19 @@ let controller = (function() {
 
                 templatesLoader.load('just-post')
                     .then((template) => {
-
                         let html = template(currentPost[0]);
                         $('#wrapper').html(html);
-
                     });
             });
 
             localStorage.setItem('posts', JSON.stringify(postsInfo));
-
+        }).catch((err) => {
+             notifier.error("You are not logged in");
         });
-
     }
 
     function postWorking(params) {
         let category = getQueryParams(window.location.hash).ategory;
-
 
         Promise.all([dataService.getPosts(), dataService.getUserInfo(), templatesLoader.load('posts')]).
         then(([posts, userInfo, templateHTML]) => {
@@ -146,8 +146,10 @@ let controller = (function() {
                     });
                 });
             }
+
             let projectionOfPosts = posts.map((p) => {
                 let isOwn = p._acl.creator === localStorage.getItem('userID');
+                let date = new Date(p._kmd.ect);
                 let isAdmin = userInfo.isAdmin;
                 if (isAdmin) {
                     isOwn = false;
@@ -155,10 +157,10 @@ let controller = (function() {
                 return {
                     data: p,
                     isOwn,
-                    isAdmin
+                    isAdmin,
+                    date
                 };
             });
-            debugger;
 
             $('#wrapper').html(templateHTML(projectionOfPosts));
 
@@ -195,7 +197,7 @@ let controller = (function() {
                             user: data.user,
                             likes: data.likes + 1,
                             dislikes: data.dislikes,
-                            "_ic": data._ic,
+                            _ic: data._ic,
                         };
                         return newData;
 
@@ -206,7 +208,7 @@ let controller = (function() {
 
             });
 
-            $('.btn-dislike').on('click', function() {
+            $('.btn-dislike').on('click', () => {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
 
@@ -219,7 +221,7 @@ let controller = (function() {
                             user: data.user,
                             likes: data.likes,
                             dislikes: data.dislikes + 1,
-                            "_ic": data._ic,
+                            _ic: data._ic,
                         };
                         return newData;
 
@@ -230,7 +232,38 @@ let controller = (function() {
                 window.location = "#/posts";
 
             });
+
+            $('#btn-paging').on('click', (ev) => {
+                let page = $('#page').val();
+                let count = $('#count').val();
+
+                
+                    let postsInSinglePage = projectionOfPosts.slice(0)
+                    .splice(page*count, count);
+                let html = templateHTML(postsInSinglePage);
+                $('#wrapper').html(html);
+                
+                window.location = "#/posts";
+
+            });
+        }).catch((err) => {
+             notifier.error("You are not logged in");
         });
+    }
+
+    function showPostByID(params) {
+        let id = params.id;
+
+       templatesLoader.load('just-post')
+            .then((template) => {
+                let post = JSON.parse(localStorage.getItem('posts'))
+                    .filter((p) => {
+                        return p.post._id === id;
+                    })[0];
+
+                    let html = template(post);
+                    $('#wrapper').html(html);
+            });
     }
 
     function getQueryParams(query) {
@@ -278,7 +311,6 @@ let controller = (function() {
 
                 $('#wrapper').html(htmlToRender);
             });
-
     }
 
 
@@ -287,7 +319,8 @@ let controller = (function() {
         showPosts,
         home,
         showUserPosts,
-        postWorking
+        postWorking,
+        showPostByID
     };
 
 }());

@@ -5,16 +5,12 @@ import {userController} from 'user-controller';
 
 let router = new Navigo(null, true);
 
-// router.on(() => {
-// 	console.log('haha');
-// 	router.navigate('/home');
-// }).resolve();
-
 router.
 	on('login', userController.login).
 	on('register', userController.register).
 	on('logout', userController.logout).
 	on('user-panel', controller.showUserPanel).
+	on('posts/:id', (params) => controller.showPostByID(params)).
 	on('posts', (params) => controller.postWorking(params)).
 	on('user/:userID', (params) => controller.showUserPosts(params)).
 	on('home', controller.home).

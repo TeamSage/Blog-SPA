@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import 'jquery';
 import {templatesLoader} from 'templates-loader';
 import {notifier} from 'notifier';
@@ -63,6 +65,7 @@ class UserController {
                     userData.register(newUser)
                         .then((user) => {
                             notifier.success(`${user.username} successfully registered!`);
+                            _toggleCLassWhenLoggedIn();
                             window.location = '#/home';
                         })
                         .catch((err) => {
@@ -112,6 +115,7 @@ class UserController {
                     userData.login(user)
                         .then((user) => {
                             notifier.success(`${user.username} successfully logged in!`);
+                            _toggleCLassWhenLoggedIn();
                             window.location = '#/home';
                         })
                         .catch((err) => {
@@ -135,14 +139,30 @@ class UserController {
             })
             .then(() => {
                 notifier.success(`You have logged out successfully!`);
+                _toggleCLassWhenLoggedOut();
                 window.location = '#/home';
             })
             .catch((err) => {
                 notifier.error('You are not logged in');
                 console.log(err);
-            })
+            });
     }
+
+    
 }
+
+ function _toggleCLassWhenLoggedIn() {
+        $('#btn-logout').removeClass('hidden');
+        $('#btn-login').addClass('hidden');
+        $('#btn-signup').addClass('hidden');
+
+    }
+
+   function _toggleCLassWhenLoggedOut() {
+        $('#btn-logout').addClass('hidden');
+        $('#btn-login').removeClass('hidden');
+        $('#btn-signup').removeClass('hidden');
+    }
 
 const userController = new UserController();
 
