@@ -262,7 +262,8 @@ h3.post-head {
 }
 
 .facebook-share-button {
-    padding-top: 10px;
+    position: relative;
+    padding-top: 56px;
     text-align: center;
 }
 
