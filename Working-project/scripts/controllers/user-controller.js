@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import 'jquery';
 import {templatesLoader} from 'templates-loader';
 import {notifier} from 'notifier';
@@ -31,25 +33,25 @@ class UserController {
 
                     // Validations
                     if(!validator.validateUser(username)) {
-                        toastr.error('Username must be between 5 and 20 symbols!', 'Blog admin');
+                        toastr.error('Username must be between 5 and 20 symbols!', 'Error');
                         cleaner.cleanInputField($username);
                         return;
                     }
 
                     if(!validator.validatePassword(password)) {
-                        toastr.error('Password must be between 5 and 20 symbols!', 'Blog admin');
+                        toastr.error('Password must be between 5 and 20 symbols!', 'Error');
                         cleaner.cleanInputField($password, $confirmPassword);
                         return;
                     }
 
                     if(!validator.validateEmail(email)) {
-                        toastr.error('E-mail is not valid!', 'Blog admin');
+                        toastr.error('E-mail is not valid!', 'Error');
                         cleaner.cleanInputField($email);
                         return;
                     }
 
                     if(password !== confirmPassword) {
-                        toastr.error('Password doesnt match', 'Blog admin');
+                        toastr.error('Password doesnt match!', 'Error');
                         cleaner.cleanInputField($password, $confirmPassword);
                     }
                         
@@ -63,10 +65,12 @@ class UserController {
 
                     userData.register(newUser)
                         .then((user) => {
-                            toastr.success('Successfully registered!', 'Blog admin');
+                            toastr.success('Successfully registered!', 'Success');
+                            _toggleCLassWhenLoggedIn();
+                            window.location = '#/home';
                         })
                         .catch((err) => {
-                            notifier.error(err);
+                            toastr.error('Data is invalid!', 'Error');
                             console.log(err);
                         });
 
@@ -93,13 +97,13 @@ class UserController {
                     // Validations
 
                     //   if (!validator.validateUser(username)) {
-                    //     toastr.error('Username must be between 5 and 20 symbols!', 'Blog admin');
+                    //     notifier.error('Username must be between 5 and 20 symbols!');
                     //     cleaner.cleanInputField($username);
                     //     return;
                     // }
 
                     // if (!validator.validatePassword(password)) {
-                    //     toastr.error('Password must be between 5 and 20 symbols!', 'Blog admin');
+                    //     notifier.error('Password must be between 5 and 20 symbols!');
                     //     cleaner.cleanInputField($password, $confirmPassword);
                     //     return;
                     // }
@@ -111,10 +115,12 @@ class UserController {
 
                     userData.login(user)
                         .then((user) => {
-                            toastr.success('You are logged in!', 'Blog admin');
+                            toastr.success('Successfully logged in!', 'Success');
+                            _toggleCLassWhenLoggedIn();
+                            window.location = '#/home';
                         })
                         .catch((err) => {
-                            toastr.error(`${err} occured`, 'Blog admin');
+                            toastr.error('Wrong username/password!', 'Error');
                             console.log(err);
                         });
 
@@ -133,14 +139,31 @@ class UserController {
 
             })
             .then(() => {
-                toastr.success('You are logged out!', 'Blog admin');
+                toastr.success('You have logged out successfully!', 'Success');
+                _toggleCLassWhenLoggedOut();
+                window.location = '#/home';
             })
             .catch((err) => {
-                toastr.error('You are not logged in!', 'Blog admin');
+                toastr.error('You are not logged in!', 'Error');
                 console.log(err);
-            })
+            });
     }
+
+    
 }
+
+ function _toggleCLassWhenLoggedIn() {
+        $('#btn-logout').removeClass('hidden');
+        $('#btn-login').addClass('hidden');
+        $('#btn-signup').addClass('hidden');
+
+    }
+
+   function _toggleCLassWhenLoggedOut() {
+        $('#btn-logout').addClass('hidden');
+        $('#btn-login').removeClass('hidden');
+        $('#btn-signup').removeClass('hidden');
+    }
 
 const userController = new UserController();
 
