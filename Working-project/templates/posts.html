@@ -1,7 +1,11 @@
 <div class="container">
-    <input  id ="page" placeholder="page">
-    <input  id = "count" placeholder="count">
-    <button id = "btn-paging">Go</button>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            <input id="page" placeholder="page">
+            <input id="count" placeholder="count">
+            <input id="btn-paging" type="button" class="btn btn-success" value="GO">
+        </div>
+    </div>
     <ul>
         {{#this}}
         <li>
@@ -13,8 +17,7 @@
                         </a>
                         <p>{{data.content}}</p>
                         <p>Categoryes: {{#data.categoryes}}
-                            <a href="#/posts?category={{this}}">{{this}}</a>
-                             {{/data.categoryes}}
+                            <a href="#/posts?category={{this}}">{{this}}</a> {{/data.categoryes}}
                         </p>
                         <div>
                             <a href="#" data-id="{{data._id}}" data-cre="{{data._ic}}" data-type="like" class="btn-like btn-like-dislike hidden-when-not-logged-in glyphicon glyphicon-thumbs-up"></a>
@@ -23,16 +26,15 @@
                         <span>Likes: <strong>{{data.likes}}</strong></span>
                         <span>Dislikes: <strong>{{data.dislikes}}</strong></span>
                         <p> Posted by
-                            <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a>
-                             on {{date}}
+                            <a class="user" href="#/user/{{data._acl.creator}}/?cre={{data._ic}}" data-id="{{data._acl.creator}}" data-cre="{{data._ic}}">{{data.user}}</a> on {{date}}
                         </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="delete-container">
                         {{#if isOwn}}
-                        <a data-id="{{data._id}}" class="btn-del-regular">Delete</a> {{/if}} {{#if isAdmin}}
-                        <a data-id="{{data._id}}" class="btn-del-admin" data-cre="{{data._ic}}">Delete</a> {{/if}}
+                        <a data-id="{{data._id}}" class="btn-del-regular btn btn-danger">Delete</a> {{/if}} {{#if isAdmin}}
+                        <a data-id="{{data._id}}" class="btn-del-admin btn btn-danger" data-cre="{{data._ic}}">Delete</a> {{/if}}
                     </div>
                 </div>
             </div>
