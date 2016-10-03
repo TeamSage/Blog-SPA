@@ -185,10 +185,12 @@ let controller = (function() {
                 dataService.deletePostFromRegularUser(dataID)
                     .then(() => {
                         notifier.success(`You have successfully deleated post!`);
+                        window.location = "#/posts";
+
                     });
 
                 ev.preventDefault();
-                window.location = "#/posts";
+                
                 return false;
 
             });
@@ -200,10 +202,11 @@ let controller = (function() {
                 dataService.deletePostFromAdmin(dataCre, dataID)
                     .then(() => {
                         notifier.success(`You have successfully deleated post!`);
+                        window.location = "#/posts";
                     });
 
                 ev.preventDefault();
-                window.location = "#/posts";
+                
                 return false;
             });
 
@@ -233,7 +236,7 @@ let controller = (function() {
 
             });
 
-            $('.btn-dislike').on('click', function() {
+            $('.btn-dislike').on('click', function(ev) {
                 let dataID = $(this).attr('data-id');
                 let dataCre = $(this).attr('data-cre');
 
