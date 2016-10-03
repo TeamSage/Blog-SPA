@@ -6,7 +6,6 @@ import {notifier} from 'notifier';
 import {userData} from 'user-data';
 import {validator} from 'validator';
 import {cleaner} from 'cleaner';
-import * as toastr from "toastr";
 
 const mainContainer = $('#wrapper');
 
@@ -33,25 +32,25 @@ class UserController {
 
                     // Validations
                     if(!validator.validateUser(username)) {
-                        toastr.error('Username must be between 5 and 20 symbols!', 'Error');
+                        notifier.error('Username must be between 5 and 20 symbols!');
                         cleaner.cleanInputField($username);
                         return;
                     }
 
                     if(!validator.validatePassword(password)) {
-                        toastr.error('Password must be between 5 and 20 symbols!', 'Error');
+                        notifier.error('Password must be between 5 and 20 symbols!');
                         cleaner.cleanInputField($password, $confirmPassword);
                         return;
                     }
 
                     if(!validator.validateEmail(email)) {
-                        toastr.error('E-mail is not valid!', 'Error');
+                        notifier.error('E-mail is not valid!');
                         cleaner.cleanInputField($email);
                         return;
                     }
 
                     if(password !== confirmPassword) {
-                        toastr.error('Password doesnt match!', 'Error');
+                        notifier.error('Password doesnt match');
                         cleaner.cleanInputField($password, $confirmPassword);
                     }
                         
@@ -65,12 +64,12 @@ class UserController {
 
                     userData.register(newUser)
                         .then((user) => {
-                            toastr.success('Successfully registered!', 'Success');
+                            notifier.success(`${user.username} successfully registered!`);
                             _toggleCLassWhenLoggedIn();
                             window.location = '#/home';
                         })
                         .catch((err) => {
-                            toastr.error('Data is invalid!', 'Error');
+                            notifier.error(err);
                             console.log(err);
                         });
 
@@ -115,12 +114,12 @@ class UserController {
 
                     userData.login(user)
                         .then((user) => {
-                            toastr.success('Successfully logged in!', 'Success');
+                            notifier.success(`${user.username} successfully logged in!`);
                             _toggleCLassWhenLoggedIn();
                             window.location = '#/home';
                         })
                         .catch((err) => {
-                            toastr.error('Wrong username/password!', 'Error');
+                            notifier.error(`${err} occured`);
                             console.log(err);
                         });
 
@@ -139,12 +138,12 @@ class UserController {
 
             })
             .then(() => {
-                toastr.success('You have logged out successfully!', 'Success');
+                notifier.success(`You have logged out successfully!`);
                 _toggleCLassWhenLoggedOut();
                 window.location = '#/home';
             })
             .catch((err) => {
-                toastr.error('You are not logged in!', 'Error');
+                notifier.error('You are not logged in');
                 console.log(err);
             });
     }
