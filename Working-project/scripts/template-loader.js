@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import Handlebars from 'handlebars';
 
 function loadTemplate(templateName) {
@@ -13,7 +15,7 @@ function loadTemplate(templateName) {
             error: function (err) {
                 reject(err);
             }
-        })
+        });
     });
 }
 
@@ -27,7 +29,7 @@ var templatesLoader = new TemplatesLoader();
 
 loadTemplate('facebookShare').then(function(template) {
   Handlebars.registerPartial('facebookShare', template);
-})
+});
 
 
 export {templatesLoader};

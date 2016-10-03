@@ -93,20 +93,6 @@ class UserController {
                     let username = $username.val(),
                         password = $password.val();
 
-                    // Validations
-
-                    //   if (!validator.validateUser(username)) {
-                    //     notifier.error('Username must be between 5 and 20 symbols!');
-                    //     cleaner.cleanInputField($username);
-                    //     return;
-                    // }
-
-                    // if (!validator.validatePassword(password)) {
-                    //     notifier.error('Password must be between 5 and 20 symbols!');
-                    //     cleaner.cleanInputField($password, $confirmPassword);
-                    //     return;
-                    // }
-
                     let user = {
                         username,
                         password
@@ -147,15 +133,12 @@ class UserController {
                 console.log(err);
             });
     }
-
-    
 }
 
  function _toggleCLassWhenLoggedIn() {
         $('#btn-logout').removeClass('hidden');
         $('#btn-login').addClass('hidden');
         $('#btn-signup').addClass('hidden');
-
     }
 
    function _toggleCLassWhenLoggedOut() {

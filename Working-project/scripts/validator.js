@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import toastr from 'toastr';
 
 class Validator {
@@ -6,7 +8,7 @@ class Validator {
         if (!(regex.test(user))) {
             return false;
         }
-
+        
         return true;
     }
 
@@ -15,6 +17,7 @@ class Validator {
         if (!(regex.test(password))) {
             return false;
         }
+
         return true;
     }
 
@@ -23,10 +26,9 @@ class Validator {
         if (!(regex.test(email))) {
             return false;
         }
+
         return true;
-
     }
-
 }
 
 const validator = new Validator();

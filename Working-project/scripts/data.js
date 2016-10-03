@@ -21,7 +21,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
             }
         };
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/_me`;
+        let url = `https://baas.kinvey.com/user/${kinveyConst.APP_ID}/_me`;
         return request.get(url, {
             headers: options.headers
         });
@@ -33,7 +33,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: header
             }
         };
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/${id}`;
+        let url = `https://baas.kinvey.com/user/${kinveyConst.APP_ID}/${id}`;
          return request.get(url, {
             headers: options.headers
         });
@@ -47,7 +47,7 @@ let dataService = (function() {
             }
         };
 
-        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
+        let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
 
         return request.post(url, {
             headers: options.headers,
@@ -61,7 +61,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
             }
         };
-        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
+        let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts`;
 
         return request.get(url, {
             headers: options.headers
@@ -74,7 +74,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
             }
         };
-         let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+         let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
          return request.get(url, options);
     }
 
@@ -85,7 +85,7 @@ let dataService = (function() {
             },
             data: body
         };
-        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+        let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
         return request.put(url,options);
     }
     function deletePostFromAdmin(header, id) {
@@ -94,7 +94,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: header
             }
         };
-        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+        let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
 
         return request.delete(url, options);
     }
@@ -106,7 +106,7 @@ let dataService = (function() {
                 [HTTP_HEADER_KEY]: localStorage.getItem(USER_CREDENTIAL)
             }
         };
-        let url = `http://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
+        let url = `https://baas.kinvey.com/appdata/${kinveyConst.APP_ID}/Posts/${id}`;
 
         return request.delete(url, options);
     }

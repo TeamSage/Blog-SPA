@@ -112,8 +112,6 @@ let controller = (function() {
                 return (p2.post.likes - p1.post.likes);
             }).slice(0, 4);
 
-
-
             let html = templateHTML(postsInfo);
             $('#wrapper').html(html);
 
@@ -186,13 +184,11 @@ let controller = (function() {
                     .then(() => {
                         notifier.success(`You have successfully deleated post!`);
                         window.location = "#/posts";
-
                     });
 
                 ev.preventDefault();
                 
                 return false;
-
             });
 
             $('.btn-del-admin').on('click', function(ev) {
@@ -233,7 +229,6 @@ let controller = (function() {
 
                 ev.preventDefault();
                 return false;
-
             });
 
             $('.btn-dislike').on('click', function(ev) {
@@ -362,11 +357,8 @@ let controller = (function() {
             .then((template) => {
                 let html = template();
                 $('#wrapper').html(html);
-
             });
-
     }
-
 
     return {
         showUserPanel,
@@ -377,7 +369,6 @@ let controller = (function() {
         showPostByID,
         showAbout
     };
-
 }());
 
 export { controller };

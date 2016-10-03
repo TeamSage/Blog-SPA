@@ -52,13 +52,13 @@ describe('UNIT TESTS', function () {
             it('Expect userData.register() to call POST method with valid url', function (done) { 
                 userData.register(user)
                     .then(() => {
-                        expect(requester.post.firstCall.args[0]).to.equal(`http://baas.kinvey.com/user/${APP_ID}`);
+                        expect(requester.post.firstCall.args[0]).to.equal(`https://baas.kinvey.com/user/${APP_ID}`);
                     })
                     .then(done, done);
              });
             
             it('Expect userData.register() to make correct post request', function (done) { 
-                let url = `http://baas.kinvey.com/user/${APP_ID}`;
+                let url = `https://baas.kinvey.com/user/${APP_ID}`;
                 userData.register(user)
                     .then(() => {
                         const actual = requester.post.firstCall.args[0];
@@ -117,7 +117,7 @@ describe('UNIT TESTS', function () {
              });
 
             it('Expect userData.login() to make correct POST request', function (done) { 
-                let url = `http://baas.kinvey.com/user/${APP_ID}/login`;
+                let url = `https://baas.kinvey.com/user/${APP_ID}/login`;
                 userData.login(user)
                 .then(() => {
                     const actual = requester.post.firstCall.args[0];
@@ -138,7 +138,7 @@ describe('UNIT TESTS', function () {
             it('Expect userData.login() to call post with valid url', function (done) { 
                 userData.login(user)
                 .then(() => {
-                    expect(requester.post.firstCall.args[0]).to.equal(`http://baas.kinvey.com/user/${APP_ID}/login`)
+                    expect(requester.post.firstCall.args[0]).to.equal(`https://baas.kinvey.com/user/${APP_ID}/login`)
                 })
                 .then(done, done);
              });

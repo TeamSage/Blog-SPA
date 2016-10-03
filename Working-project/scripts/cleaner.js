@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import 'jquery';
 
 class Cleaner {

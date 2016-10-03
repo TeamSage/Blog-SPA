@@ -1,6 +1,8 @@
+/*jshint esversion: 6 */
+
 import {kinveyConst} from 'kinvey-constants';
 import {requester} from 'requester';
-import 'jquery'
+import 'jquery';
 
 const HTTP_HEADER_KEY = 'Authorization',
         USER_CREDENTIAL = 'userCredential',
@@ -15,7 +17,7 @@ class UserData {
             }
         };
 
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}`;
+        let url = `https://baas.kinvey.com/user/${kinveyConst.APP_ID}`;
 
         let theUser = {
             username: user.username,
@@ -30,7 +32,6 @@ class UserData {
             data: theUser
         }).
         then((data) => {
-            // debugger;
             if (!data.isAdmin){
                  localStorage.setItem(USER_CREDENTIAL, 'Basic ' + btoa(user.username + ':' + user.password));
                   localStorage.setItem(USER, user.username);
@@ -48,7 +49,7 @@ class UserData {
                 [HTTP_HEADER_KEY]: 'Basic ' + btoa(token)
             }
         };
-        let url = `http://baas.kinvey.com/user/${kinveyConst.APP_ID}/login`;
+        let url = `https://baas.kinvey.com/user/${kinveyConst.APP_ID}/login`;
 
         return requester.post(url, {
             headers: options.headers,
@@ -65,16 +66,14 @@ class UserData {
     logout() {
         return Promise.resolve().
         then(() =>{
-         localStorage.removeItem(USER_CREDENTIAL);
-         localStorage.removeItem(USER);
+            localStorage.removeItem(USER_CREDENTIAL);
+            localStorage.removeItem(USER);
             localStorage.removeItem('userID');
-
         })
         .then(() => {
             window.location = '#/home';
         });
     }
-    
 }
 
 const userData = new UserData();
