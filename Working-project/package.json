@@ -13,7 +13,6 @@
     "live-server": "^1.1.0",
     "sinon": "^1.17.6",
     "systemjs": "^0.19.39",
-    "systemjs-plugin-babel": "0.0.15",
-    "toastr": "^2.1.2"
+    "systemjs-plugin-babel": "0.0.15"
   }
 }
